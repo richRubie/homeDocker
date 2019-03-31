@@ -1,0 +1,23 @@
+0a. change password
+passwd 
+
+https://www.raspberrypi.org/documentation/linux/usage/users.md
+
+0b. add windows key
+TODO script creating folders
+
+https://www.hanselman.com/blog/HowToUseWindows10sBuiltinOpenSSHToAutomaticallySSHIntoARemoteLinuxMachine.aspx
+
+
+1. install docker
+curl -sSL https://get.docker.com | sh
+
+https://www.raspberrypi.org/blog/docker-comes-to-raspberry-pi/
+
+2. change hostname
+https://geek-university.com/raspberry-pi/change-raspberry-pis-hostname/
+
+---- not sure about the bits below here
+
+3. install git
+sudo apt install git

@@ -1,0 +1,29 @@
+https://devopsheaven.com/docker/docker-compose/volumes/2018/01/16/volumes-in-docker-compose.html
+
+A. raspberry pi
+1 volumes 
+    work out how to create volumes and store data there
+    script creation of volumes
+    update compose files to use volumes
+2. Reverse proxy
+    ssl
+    configure services
+
+B. Home Assistant
+1. configure remote access - https://www.home-assistant.io/docs/configuration/remote/
+1b. setup ssl - https://www.home-assistant.io/docs/ecosystem/certificates/lets_encrypt/
+2. secrets - done 2019-03-30
+
+C. PiHole
+1. configure ssl dns - https://scotthelme.co.uk/securing-dns-across-all-of-my-devices-with-pihole-dns-over-https-1-1-1-1/  - done 2019-03-30
+1b. configure ssl dns with seperate containers
+
+D. Unifi
+1. setup up home assistant user - done 2019-03-30
+2. create iot network - done 2019-03-30
+3. https
+    https://zerossl.com/
+    https://github.com/jacobalberty/unifi-docker#certificate-support
+
+E. house
+guest wifi qr code - https://www.qrstuff.com/

@@ -1,0 +1,19 @@
+version: "3"
+services:
+  homeassistant:
+    container_name: home-assistant
+    image: homeassistant/home-assistant
+    ports:
+      - "8123:8123/tcp"
+    volumes:
+      - ./volumes/config:/config
+      # - ./etc/localtime:/etc/localtime:ro
+    restart: always
+    # network_mode: host
+
+# volumes:
+#   test:
+#     # external: true
+#     driver: local-persist
+#     driver_opts: 
+#       mountpoint: /test

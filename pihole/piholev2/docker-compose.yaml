@@ -1,0 +1,39 @@
+version: "3"
+
+# More info at https://github.com/pi-hole/docker-pi-hole/ and https://docs.pi-hole.net/
+services:
+  dnsproxy:
+    container_name: dnsproxy
+    image: visibilityspots/cloudflared:amd64
+    ports: 
+      - "5054:5054/tcp"
+    environment:
+      DNS1: 1.1.1.1
+      DNS2: 1.0.0.1  
+  pihole:
+    depends_on: dnsproxy  
+    container_name: pihole
+    image: pihole/pihole:latest
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "67:67/udp"
+      - "80:80/tcp"
+      - "443:443/tcp"
+    environment:
+      TZ: 'Europe/London'
+      WEBPASSWORD: 'newpassword'
+      DNS1: 127.0.0.1#5054
+      DNS2: 1.1.1.1
+    # Volumes store your data between container upgrades
+    volumes:
+       - './etc-pihole/:/etc/pihole/'
+       - './etc-dnsmasq.d/:/etc/dnsmasq.d/'
+    dns:
+      - 127.0.0.1
+      - 1.1.1.1
+    # Recommended but not required (DHCP needs NET_ADMIN)
+    #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
+    # cap_add:
+    #   - NET_ADMIN
+    restart: unless-stopped
