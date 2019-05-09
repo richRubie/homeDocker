@@ -9,10 +9,19 @@ TODO script creating folders
 https://www.hanselman.com/blog/HowToUseWindows10sBuiltinOpenSSHToAutomaticallySSHIntoARemoteLinuxMachine.aspx
 
 
-1. install docker
+
+ergh -this didn't work 2019-05-09
+TODO try https://blog.alexellis.io/getting-started-with-docker-on-raspberry-pi/
+1a. install docker
 curl -sSL https://get.docker.com | sh
 
 https://www.raspberrypi.org/blog/docker-comes-to-raspberry-pi/
+
+1b. allow docker to run without sudo
+https://medium.freecodecamp.org/the-easy-way-to-set-up-docker-on-a-raspberry-pi-7d24ced073ef
+
+1c. docker compose - running not in a container but want to
+https://manre-universe.net/how-to-run-docker-and-docker-compose-on-raspbian/
 
 2. change hostname
 https://geek-university.com/raspberry-pi/change-raspberry-pis-hostname/
