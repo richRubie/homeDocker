@@ -6,7 +6,7 @@ services:
       - unifi
     restart: always
     volumes:
-      - db:/data/db
+      - ./volumes/db:/data/db
   controller:
     image: "jacobalberty/unifi:latest"
     depends_on:
@@ -16,10 +16,10 @@ services:
       - unifi
     restart: always
     volumes:
-      - data:/unifi/data
-      - log:/unifi/log
+      - ./volumes/data:/unifi/data
+      - ./volumes/log:/unifi/log
       - ./volumes/cert:/unifi/cert
-      - init:/unifi/init.d
+      - ./volumes/init:/unifi/init.d
     environment:
       DB_URI: mongodb://mongo/unifi
       STATDB_URI: mongodb://mongo/unifi_stat
@@ -39,15 +39,7 @@ services:
     command: bash -c 'tail -f /unifi/log/*.log'
     restart: always
     volumes:
-      - log:/unifi/log
-
-volumes:
-  db:
-  data:
-  log:
-  init:
-  # unificert:
-  #   external: true
+      - ./volumes/log:/unifi/log
 
 networks:
   unifi:

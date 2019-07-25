@@ -1,30 +1,38 @@
-0a. change password
-passwd 
+docker on pi
+https://blog.alexellis.io/getting-started-with-docker-on-raspberry-pi/
 
-https://www.raspberrypi.org/documentation/linux/usage/users.md
+* Raspbian buster Lite
+* enable ssh by creating ssh file in boot dir
+* change password
+    passwd 
+    https://www.raspberrypi.org/documentation/linux/usage/users.md
+* Allow auto login to pi
+    * create folders for HowToUseWindows10sBuiltinOpenSSHToAutomaticallySSHIntoARemoteLinuxMachine
+        https://askubuntu.com/questions/466549/bash-home-user-ssh-authorized-keys-no-such-file-or-directory/466558#466558
+        mkdir ~/.ssh
+        chmod 700 ~/.ssh
+        touch ~/.ssh/authorized_keys
+        chmod 600 ~/.ssh/authorized_keys
+    * add windows key
+        https://www.hanselman.com/blog/HowToUseWindows10sBuiltinOpenSSHToAutomaticallySSHIntoARemoteLinuxMachine.aspx
+* change hostname
+    https://geek-university.com/raspberry-pi/change-raspberry-pis-hostname/
 
-0b. add windows key
-TODO script creating folders
 
-https://www.hanselman.com/blog/HowToUseWindows10sBuiltinOpenSSHToAutomaticallySSHIntoARemoteLinuxMachine.aspx
+* install docker
+    https://blog.alexellis.io/getting-started-with-docker-on-raspberry-pi/
+
+* install docker compose
+    * prerequisite - had to try lots of things so this may not be everything
+        sudo apt-get install build-essential libssl-dev libffi-dev python-dev
+        sudo pip3 install cffi        
+    * install docker
+        https://stevenbreuls.com/2019/01/install-docker-on-raspberry-pi/
+
+* install docker-compose as container - not working
+    https://medium.freecodecamp.org/the-easy-way-to-set-up-docker-on-a-raspberry-pi-7d24ced073ef
 
 
-
-ergh -this didn't work 2019-05-09
-TODO try https://blog.alexellis.io/getting-started-with-docker-on-raspberry-pi/
-1a. install docker
-curl -sSL https://get.docker.com | sh
-
-https://www.raspberrypi.org/blog/docker-comes-to-raspberry-pi/
-
-1b. allow docker to run without sudo
-https://medium.freecodecamp.org/the-easy-way-to-set-up-docker-on-a-raspberry-pi-7d24ced073ef
-
-1c. docker compose - running not in a container but want to
-https://manre-universe.net/how-to-run-docker-and-docker-compose-on-raspbian/
-
-2. change hostname
-https://geek-university.com/raspberry-pi/change-raspberry-pis-hostname/
 
 ---- not sure about the bits below here
 
