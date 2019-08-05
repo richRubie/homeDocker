@@ -17,6 +17,7 @@ B. Home Assistant
 C. PiHole
 1. configure ssl dns - https://scotthelme.co.uk/securing-dns-across-all-of-my-devices-with-pihole-dns-over-https-1-1-1-1/  - done 2019-03-30
 1b. configure ssl dns with seperate containers
+2 publish image to docker
 
 D. Unifi
 1. setup up home assistant user - done 2019-03-30
