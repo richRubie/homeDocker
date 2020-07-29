@@ -1,3 +1,22 @@
+
+*. enable ssh by creating ssh file in boot dir
+*. OPTIONAL - enable wifi by copying wpa_supplicant.conf
+*. change hostname
+    https://geek-university.com/raspberry-pi/change-raspberry-pis-hostname/
+*. Run below
+
+sudo apt install git
+git clone https://github.com/richRubie/homeDocker
+cd homeDocker/rasperryPiFirstStart
+./setup.sh
+
+*. add windows key
+        https://www.hanselman.com/blog/HowToUseWindows10sBuiltinOpenSSHToAutomaticallySSHIntoARemoteLinuxMachine.aspx
+        run below in windows
+        type C:\Users\RichardRubie-Todd\.ssh\id_rsa.pub | ssh pi@HOSTNAME 'cat >> .ssh/authorized_keys'
+
+
+
 docker on pi
 https://blog.alexellis.io/getting-started-with-docker-on-raspberry-pi/
 

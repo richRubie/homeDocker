@@ -68,6 +68,7 @@ https://github.com/richardregeer/docker-google-drive-sync
 
 
 todo
+link home assistant and google assistant - DONE
 back up unifi to google drive
 back up home assistant config to github
 back up home assistant secrets to google drive
