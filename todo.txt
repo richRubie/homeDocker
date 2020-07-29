@@ -28,3 +28,51 @@ D. Unifi
 
 E. house
 guest wifi qr code - https://www.qrstuff.com/
+
+
+
+2020-07-18
+Discovery doesn't work on 64 bit windows for two reasons. one: windows docker doesn't support host, two there is a bug with 64bit.
+
+ubuntu pi has a dodgy power supply need to fix this
+
+need to configure unifi to port forward a port to home assistant
+
+try and configure home assistatnt google assistant integration
+
+need to set up iot 2.4 and iot 5 ghz wifi
+
+try new docker pi with home assistant on it to see if it discovery will work
+
+bought raspberry pi power supplies to try and keep the system stable
+
+buy cloudky?
+
+//
+2020-07-28
+DISABLED FIREWALL RULE
+
+unifi docker
+https://tynick.com/blog/09-08-2019/unifi-controller-with-raspberry-pi-and-docker/
+
+You can't just put cloudflare in front of home assistant, i think you need ssl to the origin.
+https://hodgkins.io/securing-home-assitant-with-cloudflare
+https://medium.com/@thejeffreystone/home-assistant-and-cloudflare-e125338f60ad
+
+you can add some cloud flare integration into home assistant
+https://www.home-assistant.io/integrations/cloudflare/
+
+google drive backup
+https://github.com/wernight/docker-duplicity
+https://github.com/richardregeer/docker-google-drive-sync
+
+
+todo
+back up unifi to google drive
+back up home assistant config to github
+back up home assistant secrets to google drive
+set up pi for auto login
+rebuild pi
+cloud flare integration for home asssistant - i think it makes sure that teh dns always points to the correct ip.
+unifi setup up iot networks
+https://github.com/jacobalberty/unifi-docker#certificate-support

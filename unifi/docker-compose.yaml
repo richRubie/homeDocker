@@ -1,19 +1,8 @@
 version: '2.2'
 services:
-  mongo:
-    image: mongo:3.4
-    networks:
-      - unifi
-    restart: always
-    volumes:
-      - ./volumes/db:/data/db
   controller:
-    image: "jacobalberty/unifi:arm32v7-beta"
-    depends_on:
-      - mongo
+    image: "jacobalberty/unifi:arm32v7"
     init: true
-    networks:
-      - unifi
     restart: always
     volumes:
       - ./volumes/data:/unifi/data
@@ -21,8 +10,6 @@ services:
       - ./volumes/cert:/unifi/cert
       - ./volumes/init:/unifi/init.d
     environment:
-      DB_URI: mongodb://mongo/unifi
-      STATDB_URI: mongodb://mongo/unifi_stat
       DB_NAME: unifi
     ports:
       - "3478:3478/udp" # STUN
@@ -40,6 +27,3 @@ services:
     restart: always
     volumes:
       - ./volumes/log:/unifi/log
-
-networks:
-  unifi:
