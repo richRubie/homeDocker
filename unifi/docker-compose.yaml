@@ -2,6 +2,7 @@ version: '2.2'
 services:
   controller:
     image: "jacobalberty/unifi:arm32v7"
+    container_name: unifi
     init: true
     restart: always
     network_mode: host
@@ -21,6 +22,7 @@ services:
       - "8843:8843/tcp" # HTTPS portal redirection
       - "10001:10001/udp" # AP discovery
   logs:
+    container_name: unifi_logs
     image: bash
     depends_on:
       - controller
