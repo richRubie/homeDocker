@@ -5,6 +5,7 @@ services:
     container_name: unifi
     init: true
     restart: always
+    network_mode: host
     volumes:
       - ./volumes/data:/unifi/data
       - ./volumes/log:/unifi/log

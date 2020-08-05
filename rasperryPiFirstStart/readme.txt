@@ -1,3 +1,22 @@
+
+*. enable ssh by creating ssh file in boot dir
+*. OPTIONAL - enable wifi by copying wpa_supplicant.conf
+*. change hostname
+    https://geek-university.com/raspberry-pi/change-raspberry-pis-hostname/
+*. Run below
+
+sudo apt install git
+git clone https://github.com/richRubie/homeDocker
+cd homeDocker/rasperryPiFirstStart
+./setup.sh
+
+*. add windows key
+        https://www.hanselman.com/blog/HowToUseWindows10sBuiltinOpenSSHToAutomaticallySSHIntoARemoteLinuxMachine.aspx
+        run below in windows
+        type C:\Users\RichardRubie-Todd\.ssh\id_rsa.pub | ssh pi@HOSTNAME 'cat >> .ssh/authorized_keys'
+
+
+
 docker on pi
 https://blog.alexellis.io/getting-started-with-docker-on-raspberry-pi/
 
@@ -23,35 +42,14 @@ https://blog.alexellis.io/getting-started-with-docker-on-raspberry-pi/
 * update
     sudo apt update && sudo apt full-upgrade
 
-DEBIAN
+
 * install docker
     https://blog.alexellis.io/getting-started-with-docker-on-raspberry-pi/
 * install docker compose
-    * prerequisite - had to try lots of things so this may not be everything
-        sudo apt-get install build-essential libssl-dev libffi-dev python-dev
-        sudo apt-get install python3-pip
-        sudo pip3 install cffi        
-    * install docker
-        https://stevenbreuls.com/2019/01/install-docker-on-raspberry-pi/
-UBUNTU
-* install docker
-    sudo apt-get install docker docker-compose 
-    https://docs.docker.com/install/linux/docker-ce/ubuntu/
+    https://withblue.ink/2020/06/24/docker-and-docker-compose-on-raspberry-pi-os.html
+    sudo apt install -y python3-pip libffi-dev
+    sudo pip3 install docker-compose
     
 3. install git
 sudo apt-get install git
 git clone https://github.com/richRubie/homeDocker
-
-
-UBUNTU 19
-
-WIFI
-https://askubuntu.com/questions/1143287/how-to-setup-of-raspberry-pi-3-onboard-wifi-for-ubuntu-server-18-04
-
-turn off  - systemd-resolved
-https://askubuntu.com/questions/907246/how-to-disable-systemd-resolved-in-ubuntu
-
-USEFULL LINUX COMMANDS
-
-check ports
-sudo netstat -plnt
