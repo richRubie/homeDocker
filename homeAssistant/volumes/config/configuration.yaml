@@ -1,0 +1,21 @@
+http:
+  server_port: 2053
+  ssl_certificate: origin.pem
+  ssl_key: privkey.pem
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+google_assistant:
+  report_state: true
+  project_id: home-assistant2-bfff8
+  service_account: !include google-assistant.json
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
