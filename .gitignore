@@ -1,5 +1,7 @@
 certs
 */volumes/*
-!homeAssistant/volumes/*
-.vscode/settings.json
-!*.gitignore
+.vscode
+secrets.yaml
+*.pem
+
+!homeAssistant/volumes/
