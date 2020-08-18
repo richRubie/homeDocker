@@ -69,11 +69,11 @@ https://github.com/richardregeer/docker-google-drive-sync
 
 todo
 link home assistant and google assistant - DONE
-back up unifi to google drive
+back up unifi to google drive - DONE
 back up home assistant config to github - DONE
 back up home assistant secrets to google drive
 set up pi for auto login - done
 rebuild pi to get rid of home assistant installed on pi
-cloud flare integration for home asssistant - i think it makes sure that the dns always points to the correct ip.
+cloud flare ddns - DONE
 unifi setup up iot networks
 https://github.com/jacobalberty/unifi-docker#certificate-support
