@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  volumerise:
+    container_name: volumeriseSetup
+    image: blacklabelops/volumerize
+    volumes:
+      - ./volumes/volumerize_cache:/volumerize-cache
+      - ../volumes/volumerize_credentials:/credentials
+      - ./volumes/testVolume:/source:ro
+    environment:
+      VOLUMERIZE_SOURCE: '/source'
+      VOLUMERIZE_TARGET: 'gdocs://rich.rubie@gmail.com/backup/test'
+      GOOGLE_DRIVE_ID: ''
+      GOOGLE_DRIVE_SECRET: ''

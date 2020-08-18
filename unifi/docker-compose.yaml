@@ -30,3 +30,14 @@ services:
     restart: always
     volumes:
       - ./volumes/log:/unifi/log
+  volumerise:
+    container_name: unifiVolmerise
+    image: blacklabelops/volumerize
+    volumes:
+      - ./volumes/volumerize_cache:/volumerize-cache
+      - ../volumes/volumerize_credentials:/credentials
+      - ./volumes/config:/source:ro
+    environment:
+      VOLUMERIZE_SOURCE: '/source'
+      VOLUMERIZE_TARGET: 'gdocs://rich.rubie@gmail.com/backup/unifi'
+      VOLUMERIZE_FULL_IF_OLDER_THAN: '7D'
