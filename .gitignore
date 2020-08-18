@@ -1,9 +1,10 @@
 secrets
+volumes
 */volumes/*
 .vscode
 secrets.yaml
 *.pem
 
-!homeAssistant/volumes
+!homeAssistant/volumes/config
 !volumerise/volumes/testVolume
 !unifi/volumes/data
