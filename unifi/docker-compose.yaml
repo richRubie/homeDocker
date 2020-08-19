@@ -9,7 +9,7 @@ services:
     volumes:
       - ./volumes/data:/unifi/data
       - ./volumes/log:/unifi/log
-      - ./volumes/cert:/unifi/cert
+      - ../secrets/cert:/unifi/cert
       - ./volumes/init:/unifi/init.d
     environment:
       DB_NAME: unifi
@@ -35,7 +35,7 @@ services:
     image: blacklabelops/volumerize
     volumes:
       - ./volumes/volumerize_cache:/volumerize-cache
-      - ../volumes/volumerize_credentials:/credentials
+      - ../secrets/volumerize_credentials:/credentials
       - ./volumes/config:/source:ro
     environment:
       VOLUMERIZE_SOURCE: '/source'

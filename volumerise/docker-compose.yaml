@@ -6,7 +6,7 @@ services:
     image: blacklabelops/volumerize
     volumes:
       - ./volumes/volumerize_cache:/volumerize-cache
-      - ../volumes/volumerize_credentials:/credentials
+      - ../secrets/volumerize_credentials:/credentials
       - ./volumes/testVolume:/source:ro
     environment:
       VOLUMERIZE_SOURCE: '/source'

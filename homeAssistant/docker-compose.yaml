@@ -7,6 +7,7 @@ services:
       - "2053:2053/tcp"
     volumes:
       - ./volumes/config:/config
+      - ../secrets/cert:/cert
     restart: always
     network_mode: host
   volumerise:
@@ -14,7 +15,7 @@ services:
     image: blacklabelops/volumerize
     volumes:
       - ./volumes/volumerize_cache:/volumerize-cache
-      - ../volumes/volumerize_credentials:/credentials
+      - ../secrets/volumerize_credentials:/credentials
       - ./volumes/config:/source:ro
     environment:
       VOLUMERIZE_SOURCE: '/source'
