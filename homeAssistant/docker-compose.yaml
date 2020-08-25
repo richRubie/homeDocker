@@ -7,7 +7,9 @@ services:
       - "2053:2053/tcp"
     volumes:
       - ./volumes/config:/config
-      - ../secrets/cert:/cert
+      - ../secrets/cert:/config/ssl
+      - ../secrets/homeAssistant/google-assistant.json:/config/google-assistant.json
+      - ../secrets/homeAssistant/secrets.yaml:/config/secrets.yaml
     restart: always
     network_mode: host
   volumerise:
