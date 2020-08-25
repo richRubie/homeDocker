@@ -3,8 +3,9 @@ services:
   cloudflare-ddns:
     image: oznu/cloudflare-ddns:latest
     restart: always
+    env_file:
+      - ../secrets/cloudflare_ddns/variables.env
     environment:
-      - API_KEY=123
       - ZONE=redfoxfactory.co.uk
       - SUBDOMAIN=home
-      - PROXIED=true
+      - PROXIED=false
