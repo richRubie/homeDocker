@@ -12,6 +12,7 @@ services:
       - ../secrets/cert:/unifi/cert
       - ./volumes/init:/unifi/init.d
     environment:
+      TZ: 'Europe/London'
       DB_NAME: unifi
     ports:
       - "3478:3478/udp" # STUN
