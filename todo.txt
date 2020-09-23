@@ -85,3 +85,10 @@ setup certbot to add certs to home assistant and unifi. As they are wild card ce
 
 Text to Speech
 set landing light to adjust properly
+
+2020/09/23
+volumerise doesn't work on pi - need alternate solution
+Migrate HA to pi1
+rebuild pi2
+enable pihole on pi2
+enable pihole on unifi
