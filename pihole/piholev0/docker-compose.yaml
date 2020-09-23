@@ -21,6 +21,8 @@ services:
     volumes:
        - './volumes/etc-pihole/:/etc/pihole/'
        - './volumes/etc-dnsmasq.d/:/etc/dnsmasq.d/'
+       - './volumes/etc-lighttpd/external.conf:/etc/lighttpd/external.conf'
+       - '../../secrets/cert:/cert'
     dns:
       - 127.0.0.1
       - 1.1.1.1

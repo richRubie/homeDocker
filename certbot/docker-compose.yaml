@@ -1,11 +1,12 @@
 version: '2'
 services:
   certbot:
-    image: certbot/dns-cloudflare
+    image: certbot/dns-cloudflare:arm32v6-nightly
     volumes:
-      - ../secrets/cert:/cert
+      # - ../secrets/cert:/cert
       - ./volumes/etc:/etc/letsencrypt
+      - ../secrets/cert:/etc/letsencrypt/live/redfoxfactory.co.uk
       - ./volumes/logs:/var/log/letsencrypt
       - ./volumes/lib:/var/lib/letsencrypt
       - ../secrets/certbot_credentials:/credentials
-    command: certonly --dns-cloudflare --dns-cloudflare-credentials /credentials/cred.ini -d *.redfoxfactory.co.uk --agree-tos --email rich.rubie@gmail.com --keep-until-expiring --cert-path /cert/cert.pem --key-path /cert/privkey.pem --fullchain-path /cert/fullchain.pem --chain-path /cert/chain.pem --dry-run
+    command: certonly --dns-cloudflare --dns-cloudflare-credentials /credentials/cred.ini -d *.redfoxfactory.co.uk --agree-tos --email rich.rubie@gmail.com --keep-until-expiring

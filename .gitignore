@@ -1,10 +1,7 @@
 secrets
-volumes
-*/volumes/*
-.vscode
-secrets.yaml
+**/volumes/*
+.*
 *.pem
 
-!homeAssistant/volumes/config
-!volumerise/volumes/testVolume
-!unifi/volumes/data
+!homeAssistant/volumes/config/*.yaml
+!pihole/piholev0/volumes/etc-lighttpd
