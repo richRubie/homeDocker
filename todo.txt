@@ -10,8 +10,8 @@ A. raspberry pi
     configure services
 
 B. Home Assistant
-1. configure remote access - https://www.home-assistant.io/docs/configuration/remote/
-1b. setup ssl - https://www.home-assistant.io/docs/ecosystem/certificates/lets_encrypt/
+1. configure remote access - https://www.home-assistant.io/docs/configuration/remote/ DONE
+1b. setup ssl - https://www.home-assistant.io/docs/ecosystem/certificates/lets_encrypt/ DONE
 2. secrets - done 2019-03-30
 
 C. PiHole
@@ -46,7 +46,7 @@ try new docker pi with home assistant on it to see if it discovery will work
 
 bought raspberry pi power supplies to try and keep the system stable
 
-buy cloudky?
+buy cloudky? - no don't need it
 
 //
 2020-07-28
@@ -69,11 +69,19 @@ https://github.com/richardregeer/docker-google-drive-sync
 
 todo
 link home assistant and google assistant - DONE
-back up unifi to google drive
-back up home assistant config to github
-back up home assistant secrets to google drive
-set up pi for auto login
-rebuild pi
-cloud flare integration for home asssistant - i think it makes sure that teh dns always points to the correct ip.
+back up unifi to google drive - DONE
+back up home assistant config to github - DONE
+back up home assistant secrets to google drive - DONE backing up whole volume
+set up pi for auto login - done
+rebuild pi to get rid of home assistant installed on pi
+cloud flare ddns - DONE
 unifi setup up iot networks
 https://github.com/jacobalberty/unifi-docker#certificate-support
+
+setup certbot to add certs to home assistant and unifi. As they are wild card certs then home.domain and docker.home.domain should both work.??
+1. certbot to specific volume. DONE
+2. load volume in unifi DONE
+3. load volume in HA DONE ?
+
+Text to Speech
+set landing light to adjust properly

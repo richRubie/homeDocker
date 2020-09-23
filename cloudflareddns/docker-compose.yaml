@@ -1,0 +1,11 @@
+version: '2'
+services:
+  cloudflare-ddns:
+    image: oznu/cloudflare-ddns:latest
+    restart: always
+    env_file:
+      - ../secrets/cloudflare_ddns/variables.env
+    environment:
+      - ZONE=redfoxfactory.co.uk
+      - SUBDOMAIN=home
+      - PROXIED=false

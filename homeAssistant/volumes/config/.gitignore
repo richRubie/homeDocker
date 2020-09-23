@@ -1,6 +1,0 @@
-*
-!.gitignore
-!*.yaml
-!*.conf
-secrets.yaml
-*.pem

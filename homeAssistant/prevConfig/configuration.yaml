@@ -1,0 +1,64 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: 53.7994
+  longitude: -1.6665
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 160
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Europe/London
+  # Customization file
+  customize: !include customize.yaml
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Show the introduction message on startup.
+introduction:
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+# http:
+#   base_url: example.duckdns.org:8123
+
+# Sensors
+sensor:
+  # Weather prediction
+  - platform: yr
+  - platform: random
+
+# Text to speech
+tts:
+  - platform: google_translate
+    service_name: google_say
+  #
+
+remote:
+  - platform: harmony
+    name: frontroom
+    host: 192.168.1.16
+
+device_tracker:
+  - platform: unifi
+    host: unifi.redfoxfactory.co.uk
+    username: !secret unifi_username
+    password: !secret unifi_password
+    verify_ssl: false
+    interval_seconds: 10
+    new_device_defaults:
+      track_new_devices: false
+
+tplink:
+  discovery: false
+  light:
+    - host: 192.168.1.17
+
+shelly:
+  # cloud_auth_key: !secret shelly_cloudKey
+  # cloud_server: "shelly-5-eu.shelly.cloud"
+      
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml

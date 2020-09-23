@@ -1,0 +1,112 @@
+
+google_home_hub:
+  hide_if_away: false
+  icon:
+  mac: 1C:F2:9A:14:45:8B
+  name: Google-Home-Hub
+  picture:
+  track: false
+
+virgin_box:
+  hide_if_away: false
+  icon:
+  mac: 34:1F:E4:A6:4A:E0
+  name: Virgin box
+  picture:
+  track: false
+
+cloud_key:
+  hide_if_away: false
+  icon:
+  mac: B8:27:EB:5D:0F:F3
+  name: Cloud Key
+  picture:
+  track: false
+
+google_home_mini_office:
+  hide_if_away: false
+  icon:
+  mac: 20:DF:B9:24:A2:D0
+  name: Google Home mini - Office
+  picture:
+  track: false
+
+rich_s_phone:
+  hide_if_away: false
+  icon:
+  mac: 94:65:2D:6F:AF:2B
+  name: Rich's Phone
+  picture:
+  track: true
+
+google_home_mini:
+  hide_if_away: false
+  icon:
+  mac: 20:DF:B9:1A:C0:0F
+  name: Google-Home-Mini
+  picture:
+  track: false
+
+harmonyhub:
+  hide_if_away: false
+  icon:
+  mac: 00:04:20:F1:87:B8
+  name: HarmonyHub
+  picture:
+  track: false
+
+stella_s_phone:
+  hide_if_away: false
+  icon:
+  mac: 24:18:1D:FE:09:74
+  name: Stella's Phone
+  picture:
+  track: true
+
+rich_s_work_laptop:
+  hide_if_away: false
+  icon:
+  mac: 94:65:9C:30:76:27
+  name: Rich's Work Laptop
+  picture:
+  track: false
+
+stella_s_work_laptop:
+  hide_if_away: false
+  icon:
+  mac: 64:80:99:DE:3E:3D
+  name: Stella's Work Laptop
+  picture:
+  track: false
+
+xboxone:
+  hide_if_away: false
+  icon:
+  mac: BC:83:85:B1:8B:31
+  name: XboxOne
+  picture:
+  track: false
+
+front_room_light:
+  hide_if_away: false
+  icon:
+  mac: 50:C7:BF:6D:EC:9A
+  name: Front Room - Light
+  picture:
+  track: false
+
+f0_03_8c_69_8b_85:
+  hide_if_away: false
+  icon:
+  mac: F0:03:8C:69:8B:85
+  name: f0 03 8c 69 8b 85
+  picture:
+  track: false
+
+74_75_48_9c_ce_a3:
+  hide_if_away: false
+  icon:
+  mac: 74:75:48:9C:CE:A3
+  name: 74 75 48 9c ce a3
+  picture:
+  track: false

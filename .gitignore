@@ -1,5 +1,7 @@
-certs
-*/volumes/*
-!homeAssistant/volumes/*
-.vscode/settings.json
-!*.gitignore
+secrets
+**/volumes/*
+.*
+*.pem
+
+!homeAssistant/volumes/config/*.yaml
+!pihole/piholev0/volumes/etc-lighttpd
