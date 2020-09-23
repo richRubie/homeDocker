@@ -1,1 +1,62 @@
-[]
+- id: '1599811624657'
+  alias: Turn on office lights
+  description: ''
+  trigger:
+  - at: '8:30'
+    platform: time
+  condition:
+  - condition: time
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+  action:
+  - brightness_pct: 100
+    device_id: bc598afac29144f580920916f42065b5
+    domain: light
+    entity_id: light.shelly_shdm_2_e0980695b40b
+    type: turn_on
+  mode: single
+- id: '1600867231219'
+  alias: Turn Off Ollie lights at 8.30am
+  description: ''
+  trigger:
+  - at: '8:30'
+    platform: time
+  condition:
+  - condition: time
+    weekday:
+    - mon
+    - wed
+    - thu
+    - fri
+  action:
+  - device_id: 12a5db9394464e5faae1e777a36e0463
+    domain: light
+    entity_id: light.shelly_shdm_1_f3a4d4
+    type: turn_off
+  - device_id: 01e059b1c24a4d3c9cff357c828aa6e9
+    domain: switch
+    entity_id: switch.dining_room_dresser
+    type: turn_off
+  mode: single
+- id: '1600867375526'
+  alias: Turn on Ollie lights at 18:30
+  description: ''
+  trigger:
+  - at: '18:30'
+    platform: time
+  condition: []
+  action:
+  - brightness_pct: 50
+    device_id: 12a5db9394464e5faae1e777a36e0463
+    domain: light
+    entity_id: light.shelly_shdm_1_f3a4d4
+    type: turn_on
+  - device_id: 01e059b1c24a4d3c9cff357c828aa6e9
+    domain: switch
+    entity_id: switch.dining_room_dresser
+    type: turn_on
+  mode: single
