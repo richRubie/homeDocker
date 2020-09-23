@@ -73,10 +73,10 @@ back up unifi to google drive - DONE
 back up home assistant config to github - DONE
 back up home assistant secrets to google drive - DONE backing up whole volume
 set up pi for auto login - done
-rebuild pi to get rid of home assistant installed on pi
+rebuild pi to get rid of home assistant installed on pi - done
 cloud flare ddns - DONE
-unifi setup up iot networks
-https://github.com/jacobalberty/unifi-docker#certificate-support
+unifi setup up iot networks - done
+https://github.com/jacobalberty/unifi-docker#certificate-support - done
 
 setup certbot to add certs to home assistant and unifi. As they are wild card certs then home.domain and docker.home.domain should both work.??
 1. certbot to specific volume. DONE
