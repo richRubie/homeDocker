@@ -1,7 +1,9 @@
 secrets
-**/volumes/*
+volumes
 .*
 *.pem
 
 !homeAssistant/volumes/config/*.yaml
 !pihole/piholev0/volumes/etc-lighttpd
+!zigbee2mqtt/volumes/zigbee2mqttData/configuration.yaml
+!zigbee2mqtt/volumes/mosquittoConfig/mosquitto.conf

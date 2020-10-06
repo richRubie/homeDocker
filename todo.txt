@@ -75,7 +75,7 @@ back up home assistant secrets to google drive - DONE backing up whole volume
 set up pi for auto login - done
 rebuild pi to get rid of home assistant installed on pi
 cloud flare ddns - DONE
-unifi setup up iot networks
+unifi setup up iot networks - Done
 https://github.com/jacobalberty/unifi-docker#certificate-support
 
 setup certbot to add certs to home assistant and unifi. As they are wild card certs then home.domain and docker.home.domain should both work.??
@@ -85,3 +85,5 @@ setup certbot to add certs to home assistant and unifi. As they are wild card ce
 
 Text to Speech
 set landing light to adjust properly
+
+Added zigbee to mqtt and mosquitto using https://medium.com/swlh/using-docker-compose-to-build-zigbee-infrastructure-336983a6ad67

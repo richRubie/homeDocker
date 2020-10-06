@@ -43,10 +43,10 @@
     type: turn_off
   mode: single
 - id: '1600867375526'
-  alias: Turn on Ollie lights at 18:30
+  alias: Turn on Ollie lights at 18:00
   description: ''
   trigger:
-  - at: '18:30'
+  - at: '18:00'
     platform: time
   condition: []
   action:
