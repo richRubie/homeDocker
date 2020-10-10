@@ -2,10 +2,10 @@ https://devopsheaven.com/docker/docker-compose/volumes/2018/01/16/volumes-in-doc
 
 A. raspberry pi
 1 volumes 
-    work out how to create volumes and store data there
-    script creation of volumes
-    update compose files to use volumes
-2. Reverse proxy
+    work out how to create volumes and store data there - done
+    script creation of volumes - ?? don't need
+    update compose files to use volumes - done
+2. Reverse proxy - don't need
     ssl
     configure services
 
@@ -22,7 +22,7 @@ C. PiHole
 D. Unifi
 1. setup up home assistant user - done 2019-03-30
 2. create iot network - done 2019-03-30
-3. https
+3. https - done
     https://zerossl.com/
     https://github.com/jacobalberty/unifi-docker#certificate-support
 
@@ -34,15 +34,15 @@ guest wifi qr code - https://www.qrstuff.com/
 2020-07-18
 Discovery doesn't work on 64 bit windows for two reasons. one: windows docker doesn't support host, two there is a bug with 64bit.
 
-ubuntu pi has a dodgy power supply need to fix this
+ubuntu pi has a dodgy power supply need to fix this - done
 
 need to configure unifi to port forward a port to home assistant
 
 try and configure home assistatnt google assistant integration
 
-need to set up iot 2.4 and iot 5 ghz wifi
+need to set up iot 2.4 and iot 5 ghz wifi - done
 
-try new docker pi with home assistant on it to see if it discovery will work
+try new docker pi with home assistant on it to see if it discovery will work - done
 
 bought raspberry pi power supplies to try and keep the system stable
 
@@ -60,7 +60,7 @@ https://hodgkins.io/securing-home-assitant-with-cloudflare
 https://medium.com/@thejeffreystone/home-assistant-and-cloudflare-e125338f60ad
 
 you can add some cloud flare integration into home assistant
-https://www.home-assistant.io/integrations/cloudflare/
+https://www.home-assistant.io/integrations/cloudflare/ - not doing
 
 google drive backup
 https://github.com/wernight/docker-duplicity
@@ -88,7 +88,7 @@ set landing light to adjust properly
 
 2020/09/23
 volumerise doesn't work on pi - need alternate solution
-Migrate HA to pi1
+Migrate HA to pi1 - done
 rebuild pi2
 enable pihole on pi2
 enable pihole on unifi
