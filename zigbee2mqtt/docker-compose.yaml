@@ -3,7 +3,7 @@ services:
   mosquitto:
     container_name: mosquitto
     image: eclipse-mosquitto:latest
-    restart: always
+    restart: unless-stopped
     # deploy:
     #   resources:
     #   limits:
@@ -25,7 +25,7 @@ services:
       - /run/udev:/run/udev:ro
     devices:
       - /dev/ttyACM0:/dev/ttyACM0
-    restart: always
+    restart: unless-stopped
     network_mode: host
     privileged: true
     environment:
