@@ -10,7 +10,7 @@ services:
       - ../secrets/cert:/config/ssl
       - ../secrets/homeAssistant/google-assistant.json:/config/google-assistant.json
       - ../secrets/homeAssistant/secrets.yaml:/config/secrets.yaml
-    restart: always
+    restart: unless-stopped
     network_mode: host
   volumerise:
     container_name: homeAssistantVolmerise

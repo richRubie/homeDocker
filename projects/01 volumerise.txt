@@ -1,0 +1,3 @@
+2020-10-10 
+    duplicity doesn't work on pi
+    Requires alternate solution or getting build working on pi

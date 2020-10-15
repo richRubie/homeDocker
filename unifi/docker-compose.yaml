@@ -4,7 +4,7 @@ services:
     image: "jacobalberty/unifi:arm32v7"
     container_name: unifi
     init: true
-    restart: always
+    restart: unless-stopped
     network_mode: host
     volumes:
       - ./volumes/data:/unifi/data
@@ -28,7 +28,7 @@ services:
     depends_on:
       - controller
     command: bash -c 'tail -f /unifi/log/*.log'
-    restart: always
+    restart: unless-stopped
     volumes:
       - ./volumes/log:/unifi/log
   volumerise:
