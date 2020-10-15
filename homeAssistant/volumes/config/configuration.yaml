@@ -29,3 +29,37 @@ mqtt:
   will_message:
     topic: 'hass/status'
     payload: 'offline'
+
+input_select:
+  switch_bread_maker_status:
+    name: Bread Maker Status
+    options:
+      - Idle
+      - Running
+      - Finishing
+      - Offline
+    initial: Idle
+
+sensor:
+  - platform: template
+    sensors:
+      switch_bread_maker_amps:
+        friendly_name_template: "{{ states.switch.bread_maker.name}} Current"
+        value_template: '{{ states.switch.bread_maker.attributes["current_a"] | float }}'
+        unit_of_measurement: 'A'
+      switch_bread_maker_watts:
+        friendly_name_template: "{{ states.switch.bread_maker.name}} Current Consumption"
+        value_template: '{{ states.switch.bread_maker.attributes["current_power_w"] | float }}'
+        unit_of_measurement: 'W'
+      switch_bread_maker_total_kwh:
+        friendly_name_template: "{{ states.switch.bread_maker.name}} Total Consumption"
+        value_template: '{{ states.switch.bread_maker.attributes["total_energy_kwh"] | float }}'
+        unit_of_measurement: 'kWh'
+      switch_bread_maker_volts:
+        friendly_name_template: "{{ states.switch.bread_maker.name}} Voltage"
+        value_template: '{{ states.switch.bread_maker.attributes["voltage"] | float }}'
+        unit_of_measurement: 'V'
+      switch_bread_maker_today_kwh:
+        friendly_name_template: "{{ states.switch.bread_maker.name}} Today's Consumption"
+        value_template: '{{ states.switch.bread_maker.attributes["today_energy_kwh"] | float }}'
+        unit_of_measurement: 'kWh'
