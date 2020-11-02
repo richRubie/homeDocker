@@ -60,37 +60,17 @@
     entity_id: switch.dining_room_dresser
     type: turn_on
   mode: single
-# - id: '1602799318959'
-#   alias: Bread maker started
-#   description: ''
-#   trigger:
-#   - above: '10'
-#     entity_id: sensor.switch_bread_maker_watts
-#     platform: numeric_state
-#   condition:
-#   - condition: state
-#     entity_id: input_select.switch_bread_maker_status
-#     state: Idle
-#   action:
-#   - data:
-#       entity_id: input_select.switch_bread_maker_status
-#       option: Running
-#     service: input_select.select_option
-#   mode: single
-# - id: '1602799778252'
-#   alias: Bread maker Finished
-#   description: ''
-#   trigger:
-#   - below: '0.5'
-#     entity_id: sensor.switch_bread_maker_watts
-#     platform: numeric_state
-#   condition:
-#   - condition: state
-#     entity_id: input_select.switch_bread_maker_status
-#     state: Running
-#   action:
-#   - data:
-#       entity_id: input_select.switch_bread_maker_status
-#       option: Finishing
-#     service: input_select.select_option
-#   mode: single
+- id: '1604354516744'
+  alias: Tell Ollie it's bath time
+  description: ''
+  trigger:
+  - platform: time
+    at: '19:00'
+  condition: []
+  action:
+  - service: tts.google_translate_say
+    entity_id: media_player.dining_room_speaker
+    data:
+      message: Ollie, are you listening? Its bathtime, please go to the bathroom and
+        get undressed.
+  mode: single
