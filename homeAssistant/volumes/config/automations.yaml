@@ -60,3 +60,17 @@
     entity_id: switch.dining_room_dresser
     type: turn_on
   mode: single
+- id: '1604354516744'
+  alias: Tell Ollie it's bath time
+  description: ''
+  trigger:
+  - platform: time
+    at: '19:00'
+  condition: []
+  action:
+  - service: tts.google_translate_say
+    entity_id: media_player.dining_room_speaker
+    data:
+      message: Ollie, are you listening? Its bathtime, please go to the bathroom and
+        get undressed.
+  mode: single

@@ -1,3 +1,10 @@
+homeassistant:
+#   name: Home
+#   elevation: 430
+#   unit_system: metric
+#   # external_url: "https://www.example.com"
+  internal_url: https://pi1.redfoxfactory.co.uk:2053
+
 http:
  server_port: 2053
  ssl_certificate: ssl/fullchain.pem
@@ -9,6 +16,7 @@ default_config:
 # Text to speech
 tts:
   - platform: google_translate
+    # base_url: https://pi1.redfoxfactory.co.uk:2053
 
 google_assistant:
   report_state: true
@@ -22,10 +30,34 @@ scene: !include scenes.yaml
 
 mqtt:
   discovery: true
-  broker: 'mqtt://localhost'
+  broker: 192.168.1.64
   birth_message:
     topic: 'hass/status'
     payload: 'online'
   will_message:
     topic: 'hass/status'
     payload: 'offline'
+
+sensor:
+  - platform: template
+    sensors:
+      # switch_bread_maker_amps:
+      #   friendly_name_template: "{{ states.switch.bread_maker.name}} Current"
+      #   value_template: '{{ states.switch.bread_maker.attributes["current_a"] | float }}'
+      #   unit_of_measurement: 'A'
+      switch_bread_maker_watts:
+        friendly_name_template: "{{ states.switch.bread_maker.name}} Power"
+        value_template: '{{ states.switch.bread_maker.attributes["current_power_w"] | float }}'
+        unit_of_measurement: 'W'
+      # switch_bread_maker_total_kwh:
+      #   friendly_name_template: "{{ states.switch.bread_maker.name}} Total Consumption"
+      #   value_template: '{{ states.switch.bread_maker.attributes["total_energy_kwh"] | float }}'
+      #   unit_of_measurement: 'kWh'
+      # switch_bread_maker_volts:
+      #   friendly_name_template: "{{ states.switch.bread_maker.name}} Voltage"
+      #   value_template: '{{ states.switch.bread_maker.attributes["voltage"] | float }}'
+      #   unit_of_measurement: 'V'
+      # switch_bread_maker_today_kwh:
+      #   friendly_name_template: "{{ states.switch.bread_maker.name}} Today's Consumption"
+      #   value_template: '{{ states.switch.bread_maker.attributes["today_energy_kwh"] | float }}'
+      #   unit_of_measurement: 'kWh'
