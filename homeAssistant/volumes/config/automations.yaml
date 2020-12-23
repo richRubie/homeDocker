@@ -55,22 +55,23 @@
     domain: light
     entity_id: light.shelly_shdm_1_f3a4d4
     type: turn_on
-  - device_id: 01e059b1c24a4d3c9cff357c828aa6e9
+  - type: turn_on
+    device_id: 01e059b1c24a4d3c9cff357c828aa6e9
+    entity_id: switch.starlight
     domain: switch
-    entity_id: switch.dining_room_dresser
-    type: turn_on
   mode: single
 - id: '1604354516744'
   alias: Tell Ollie it's bath time
   description: ''
   trigger:
   - platform: time
-    at: '19:00'
+    at: '18:30'
   condition: []
   action:
   - service: tts.google_translate_say
-    entity_id: media_player.dining_room_speaker
     data:
-      message: Ollie, are you listening? Its bathtime, please go to the bathroom and
-        get undressed.
+      message: Ollie, are you listening? Its shower time, please go to the bathroom
+        and get undressed.
+      entity_id:
+      - media_player.living_room_speaker
   mode: single

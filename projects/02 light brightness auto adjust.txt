@@ -1,2 +1,10 @@
 2020-10-10 
     seems complicated need node red?
+
+2020-11-02
+    1 - normalise each bulb brightness between  0 & 100
+    2 - Create brightness value
+    3 - sync light to brightness
+
+2020-11-03
+    circadian rythym working?

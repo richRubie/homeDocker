@@ -61,3 +61,13 @@ sensor:
       #   friendly_name_template: "{{ states.switch.bread_maker.name}} Today's Consumption"
       #   value_template: '{{ states.switch.bread_maker.attributes["today_energy_kwh"] | float }}'
       #   unit_of_measurement: 'kWh'
+
+circadian_lighting:
+
+switch:
+  - platform: circadian_lighting
+    lights_brightness:
+      - light.shelly_shdm_1_f3a619
+    min_brightness: 10
+    max_brightness: 100
+    
