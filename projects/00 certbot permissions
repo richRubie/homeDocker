@@ -1,0 +1,4 @@
+certbot aut creates everything as root.
+docker has issues with these files
+
+if you change the permissions to  pi using chown then certbot has issues renewing
