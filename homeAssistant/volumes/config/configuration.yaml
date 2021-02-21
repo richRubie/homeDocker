@@ -30,7 +30,7 @@ scene: !include scenes.yaml
 
 mqtt:
   discovery: true
-  broker: 192.168.1.64
+  broker: pi1.redfoxfactory.co.uk
   birth_message:
     topic: 'hass/status'
     payload: 'online'
