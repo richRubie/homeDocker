@@ -37,10 +37,14 @@
     domain: light
     entity_id: light.shelly_shdm_1_f3a4d4
     type: turn_off
-  - device_id: 01e059b1c24a4d3c9cff357c828aa6e9
+  - type: turn_off
+    device_id: 01e059b1c24a4d3c9cff357c828aa6e9
+    entity_id: switch.starlight
     domain: switch
-    entity_id: switch.dining_room_dresser
-    type: turn_off
+  - type: turn_off
+    device_id: 763f3b38eba2b821afcbd1f1537ea25f
+    entity_id: light.shelly_shsw_1_483fda9421d1
+    domain: light
   mode: single
 - id: '1600867375526'
   alias: Turn on Ollie lights at 18:00
@@ -59,6 +63,10 @@
     device_id: 01e059b1c24a4d3c9cff357c828aa6e9
     entity_id: switch.starlight
     domain: switch
+  - type: turn_on
+    device_id: 763f3b38eba2b821afcbd1f1537ea25f
+    entity_id: light.shelly_shsw_1_483fda9421d1
+    domain: light
   mode: single
 - id: '1604354516744'
   alias: Tell Ollie it's bath time
@@ -74,4 +82,130 @@
         and get undressed.
       entity_id:
       - media_player.living_room_speaker
+  mode: single
+- id: '1609164746747'
+  alias: Turn Off Ollie main light at bed time
+  description: ''
+  trigger:
+  - at: '19:30'
+    platform: time
+  condition:
+  - condition: time
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+    - sat
+    - sun
+  action:
+  - device_id: 12a5db9394464e5faae1e777a36e0463
+    domain: light
+    entity_id: light.shelly_shdm_1_f3a4d4
+    type: turn_off
+  mode: single
+- id: '1609164821532'
+  alias: Turn Off Ollie lamp at bedtime
+  description: ''
+  trigger:
+  - at: '20:00'
+    platform: time
+  condition:
+  - condition: time
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+    - sat
+    - sun
+  action:
+  - type: turn_off
+    device_id: 763f3b38eba2b821afcbd1f1537ea25f
+    entity_id: light.shelly_shsw_1_483fda9421d1
+    domain: light
+  mode: single
+- id: '1609164909290'
+  alias: Turn Off Ollie starlights at bedtime
+  description: ''
+  trigger:
+  - platform: time
+    at: '20:45'
+  condition:
+  - condition: time
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+    - sat
+    - sun
+  action:
+  - type: turn_off
+    device_id: 01e059b1c24a4d3c9cff357c828aa6e9
+    entity_id: switch.starlight
+    domain: switch
+  mode: single
+- id: '1609969268420'
+  alias: turn on masterbedroom lights at 7pm
+  description: ''
+  trigger:
+  - platform: time
+    at: '19:00'
+  condition: []
+  action:
+  - domain: light
+    entity_id: light.shelly_shdm_2_e09806954c45
+    device_id: 5b37f965dd914df99ffa9e725c576fd3
+    type: turn_on
+  - domain: light
+    entity_id: light.shelly_shdm_2_e0980695b38b
+    device_id: 4c9beab5f0cc42ddacf2988ab9bc8e90
+    type: turn_on
+  mode: single
+- id: '1613940955727'
+  alias: Set landing light to 10% at 7pm
+  description: ''
+  trigger:
+  - platform: time
+    at: '19:00'
+  condition: []
+  action:
+  - service: light.turn_on
+    data:
+      brightness_pct: 10
+      transition: 300
+    entity_id: light.shelly_shdm_1_f3a619
+  mode: single
+- id: '1613941020607'
+  alias: Set landing light to 100% at 7am
+  description: ''
+  trigger:
+  - platform: time
+    at: 07:00
+  condition: []
+  action:
+  - service: light.turn_on
+    data:
+      brightness_pct: 100
+      transition: 300
+    entity_id: light.shelly_shdm_1_f3a619
+  mode: single
+- id: '1613944615632'
+  alias: Turn on cellar light with motion
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.motion_sensor_1_occupancy
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - type: turn_on
+    device_id: b4fff931a21e4299dc08dca842de7d7d
+    entity_id: light.shelly_shsw_1_483fda91bd5e
+    domain: light
   mode: single
