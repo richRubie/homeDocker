@@ -202,7 +202,10 @@
     entity_id: binary_sensor.motion_sensor_1_occupancy
     from: 'off'
     to: 'on'
-  condition: []
+  condition:
+  - condition: time
+    after: 07:00:00
+    before: '22:00:00'
   action:
   - type: turn_on
     device_id: b4fff931a21e4299dc08dca842de7d7d

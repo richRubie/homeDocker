@@ -8,6 +8,7 @@
 sudo apt install git
 git clone https://github.com/richRubie/homeDocker
 cd homeDocker/rasperryPiFirstStart
+chmod +x setup.sh
 ./setup.sh
 
 *. add windows key
@@ -16,6 +17,15 @@ cd homeDocker/rasperryPiFirstStart
         type C:\Users\RichardRubie-Todd\.ssh\id_rsa.pub | ssh pi@HOSTNAME 'cat >> .ssh/authorized_keys'
 
 
+sudo cp -rL ~/homeDocker/certbot/volumes/etc/live/redfoxfactory.co.uk-0001 ~/certStaging
+sudo chown -R pi:pi ~/certStaging/
+cd ~/certStaging
+cat privkey.pem cert.pem > combined.pem
+cp -rL ~/homeDocker/secrets/cert ~/homeDocker/secrets/certArchive/$(date +"%Y-%m-%d")
+cp -fR ~/certStaging/* ~/homeDocker/secrets/cert
+
+
+docker-compose down && docker-compose pull && docker-compose up -d
 
 docker on pi
 https://blog.alexellis.io/getting-started-with-docker-on-raspberry-pi/

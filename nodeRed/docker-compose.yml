@@ -13,7 +13,7 @@ services:
       - ./volumes/data:/data
       - ../secrets/cert:/data/cert
 
-    user: "root:root"
+    # user: "root:root"
 
 volumes:
   node-red-data:

@@ -11,6 +11,7 @@ services:
       - ../secrets/homeAssistant/google-assistant.json:/config/google-assistant.json
       - ../secrets/homeAssistant/secrets.yaml:/config/secrets.yaml
     restart: unless-stopped
+    privileged: true
     network_mode: host
   volumerise:
     container_name: homeAssistantVolmerise
