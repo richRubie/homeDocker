@@ -3,8 +3,8 @@ services:
   homeassistant:
     container_name: home-assistant
     image: homeassistant/raspberrypi3-homeassistant:stable
-    ports:
-      - "2053:2053/tcp"
+    # ports:
+    #   - "2053:2053/tcp"
     volumes:
       - ./volumes/config:/config
       - ../secrets/cert:/config/ssl
@@ -13,14 +13,14 @@ services:
     restart: unless-stopped
     privileged: true
     network_mode: host
-  volumerise:
-    container_name: homeAssistantVolmerise
-    image: blacklabelops/volumerize
-    volumes:
-      - ./volumes/volumerize_cache:/volumerize-cache
-      - ../secrets/volumerize_credentials:/credentials
-      - ./volumes/config:/source:ro
-    environment:
-      VOLUMERIZE_SOURCE: '/source'
-      VOLUMERIZE_TARGET: 'gdocs://rich.rubie@gmail.com/backup/homeAssistant'
-      VOLUMERIZE_FULL_IF_OLDER_THAN: '7D'
+  # volumerise:
+  #   container_name: homeAssistantVolmerise
+  #   image: blacklabelops/volumerize
+  #   volumes:
+  #     - ./volumes/volumerize_cache:/volumerize-cache
+  #     - ../secrets/volumerize_credentials:/credentials
+  #     - ./volumes/config:/source:ro
+  #   environment:
+  #     VOLUMERIZE_SOURCE: '/source'
+  #     VOLUMERIZE_TARGET: 'gdocs://rich.rubie@gmail.com/backup/homeAssistant'
+  #     VOLUMERIZE_FULL_IF_OLDER_THAN: '7D'

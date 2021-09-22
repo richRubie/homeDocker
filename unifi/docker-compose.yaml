@@ -31,14 +31,14 @@ services:
     restart: unless-stopped
     volumes:
       - ./volumes/log:/unifi/log
-  volumerise:
-    container_name: unifiVolumerise
-    image: blacklabelops/volumerize
-    volumes:
-      - ./volumes/volumerize_cache:/volumerize-cache
-      - ../secrets/volumerize_credentials:/credentials
-      - ./volumes/data/backup:/source:ro
-    environment:
-      VOLUMERIZE_SOURCE: '/source'
-      VOLUMERIZE_TARGET: 'gdocs://rich.rubie@gmail.com/backup/unifi'
-      VOLUMERIZE_FULL_IF_OLDER_THAN: '7D'
+  # volumerise:
+  #   container_name: unifiVolumerise
+  #   image: blacklabelops/volumerize
+  #   volumes:
+  #     - ./volumes/volumerize_cache:/volumerize-cache
+  #     - ../secrets/volumerize_credentials:/credentials
+  #     - ./volumes/data/backup:/source:ro
+  #   environment:
+  #     VOLUMERIZE_SOURCE: '/source'
+  #     VOLUMERIZE_TARGET: 'gdocs://rich.rubie@gmail.com/backup/unifi'
+  #     VOLUMERIZE_FULL_IF_OLDER_THAN: '7D'
