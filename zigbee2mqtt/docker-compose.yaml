@@ -4,13 +4,14 @@ services:
     container_name: mosquitto
     image: eclipse-mosquitto:latest
     restart: unless-stopped
+    network_mode: host
     # deploy:
     #   resources:
     #   limits:
     #     memory: 125M
-    ports:
-      - "1883:1883"
-      - "9001:9001"
+    # ports:
+    #   - "1883:1883"
+    #   - "9001:9001"
     volumes:
       - ./volumes/mosquittoConfig/mosquitto.conf:/mosquitto/config/mosquitto.conf
       - ./volumes/mosquittoData:/mosquitto/data
@@ -22,6 +23,7 @@ services:
     image: koenkk/zigbee2mqtt
     volumes:
       - ./volumes/zigbee2mqttData:/app/data
+      - ../secrets/zigbee2mqtt/secrets.yaml:/app/data/secret.yaml
       - /run/udev:/run/udev:ro
     devices:
       - /dev/ttyACM0:/dev/ttyACM0

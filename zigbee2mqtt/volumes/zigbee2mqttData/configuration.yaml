@@ -5,6 +5,8 @@ mqtt:
   server: mqtt://localhost
 serial:
   port: /dev/ttyACM0
+frontend:
+  port: 8081
 devices:
   '0x00158d0005bd8d7f':
     friendly_name: Aqara HT 1
@@ -22,5 +24,22 @@ devices:
     friendly_name: Aqara PIR 1
   '0x00158d00054d4578':
     friendly_name: Aqara PIR 2
+    occupancy_timeout: 30
   '0x847127fffe329086':
-    friendly_name: 'Ikea Switch 1'
+    friendly_name: Ikea Switch 1
+  '0x00158d00068b38c9':
+    friendly_name: Aqara HT 7
+  '0x00158d0006c032d8':
+    friendly_name: Aqara PIR 3
+  '0x00158d000678e1b6':
+    friendly_name: Aqara HT 8
+  '0x00158d0003cf3b89':
+    friendly_name: Aqara DW 1
+  '0x00158d0002ec53d4':
+    friendly_name: Aqara DW 2
+  '0x00158d00025d69e9':
+    friendly_name: Aqara DW 3
+  '0x00158d0003ceb910':
+    friendly_name: Aqara DW 4
+advanced:
+  log_level: info
