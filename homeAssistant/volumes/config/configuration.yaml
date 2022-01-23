@@ -3,7 +3,7 @@ homeassistant:
 #   elevation: 430
 #   unit_system: metric
 #   # external_url: "https://www.example.com"
-  internal_url: https://pi1.redfoxfactory.co.uk:2053
+  internal_url: https://pi2.redfoxfactory.co.uk:2053
 
 http:
  server_port: 2053
@@ -16,11 +16,12 @@ default_config:
 # Text to speech
 tts:
   - platform: google_translate
+    language: en-uk
     # base_url: https://pi1.redfoxfactory.co.uk:2053
 
 google_assistant:
   report_state: true
-  project_id: home-assistant2-bfff8
+  project_id: home-automation-337120
   service_account: !include google-assistant.json
 
 group: !include groups.yaml
@@ -30,13 +31,24 @@ scene: !include scenes.yaml
 
 mqtt:
   discovery: true
-  broker: pi1.redfoxfactory.co.uk
+  broker: pi2.redfoxfactory.co.uk
   birth_message:
     topic: 'hass/status'
     payload: 'online'
   will_message:
     topic: 'hass/status'
     payload: 'offline'
+
+# Example configuration.yaml entry
+# nest:
+#   client_id: !secret nest_client_id
+#   client_secret: !secret nest_client_secret
+#   project_id: !secret nest_project_id
+
+nest:
+  client_id: 406265859612-ngrcrnqast17ifokkr7j45kl3korgtud.apps.googleusercontent.com
+  client_secret: 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
+  project_id: 763fe911-d2ef-4891-82af-30db23a10919
 
 sensor:
   - platform: template

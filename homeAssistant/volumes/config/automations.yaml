@@ -80,8 +80,8 @@
     data:
       message: Ollie, are you listening? Its shower time, please go to the bathroom
         and get undressed.
-      entity_id:
-      - media_player.living_room_speaker
+      entity_id: media_player.attic_display
+      language: en-uk
   mode: single
 - id: '1609164746747'
   alias: Turn Off Ollie main light at bed time
@@ -181,34 +181,185 @@
     entity_id: light.shelly_shdm_1_f3a619
   mode: single
 - id: '1613941020607'
-  alias: Set landing light to 100% at 7am
+  alias: Set landing light to 100% in the Morning
   description: ''
   trigger:
   - platform: time
-    at: 07:00
+    at: 08:00
   condition: []
   action:
   - service: light.turn_on
     data:
       brightness_pct: 100
       transition: 300
-    entity_id: light.shelly_shdm_1_f3a619
+    target:
+      entity_id: light.shelly_shdm_1_f3a619
   mode: single
-- id: '1613944615632'
-  alias: Turn on cellar light with motion
+- id: '1632403358752'
+  alias: Toilet - Motion for light
+  description: 'Toilet '
+  use_blueprint:
+    path: homeassistant/motion_light.yaml
+    input:
+      no_motion_wait: 307
+      light_target:
+        area_id: toilet
+      motion_entity: binary_sensor.aqara_pir_3_occupancy
+- id: '1632834080174'
+  alias: Raining and Attic windows are open notification
   description: ''
   trigger:
   - platform: state
-    entity_id: binary_sensor.motion_sensor_1_occupancy
-    from: 'off'
-    to: 'on'
+    entity_id: sensor.pudsey_probability_of_precipitation_3_hourly
+    attribute: attribution
+    from: '50'
+    to: '100'
   condition:
-  - condition: time
-    after: 07:00:00
-    before: '22:00:00'
+  - condition: or
+    conditions:
+    - type: is_open
+      condition: device
+      device_id: 1f5a025605e6f23fa0ce984ca6df6114
+      entity_id: binary_sensor.0x00158d0003cf3b89_contact
+      domain: binary_sensor
+    - type: is_open
+      condition: device
+      device_id: 17bb7d3c08dcff6a63cc1f3dbe5255d3
+      entity_id: binary_sensor.aqara_dw_2_contact
+      domain: binary_sensor
   action:
-  - type: turn_on
-    device_id: b4fff931a21e4299dc08dca842de7d7d
-    entity_id: light.shelly_shsw_1_483fda91bd5e
-    domain: light
+  - device_id: d840b2d682f64d2895b9f4faff8af720
+    domain: mobile_app
+    type: notify
+    title: I'ts going to rain
+    message: Attic windows are open
   mode: single
+- id: '1636967707722'
+  alias: Set landing light to 50% in the Morning
+  description: ''
+  trigger:
+  - platform: time
+    at: 07:20
+  condition: []
+  action:
+  - service: light.turn_on
+    data:
+      transition: 300
+      brightness_pct: 25
+    target:
+      entity_id: light.shelly_shdm_1_f3a619
+  mode: single
+- id: '1640619543027'
+  alias: Toilet light auto on off
+  description: ''
+  trigger:
+  - platform: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.toilet
+    id: timer_finished
+  - type: motion
+    platform: device
+    device_id: fb70afcf862ef62a6c6580eae94a1da9
+    entity_id: binary_sensor.aqara_pir_3_occupancy
+    domain: binary_sensor
+    id: motion_detected
+  - platform: state
+    entity_id: binary_sensor.aqara_dw_3_contact
+    to: 'on'
+    id: door_open
+  - platform: state
+    entity_id: light.shelly_shdm_2_e8db84d787f2
+    to: 'on'
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: timer_finished
+      sequence:
+      - service: light.turn_off
+        target:
+          area_id: toilet
+        data: {}
+    default:
+    - service: light.turn_on
+      target:
+        area_id: toilet
+    - service: timer.start
+      data:
+        duration: '0'
+      target:
+        area_id: toilet
+  - condition: trigger
+    id: motion_detected
+  - condition: state
+    entity_id: binary_sensor.aqara_dw_3_contact
+    state: 'off'
+  - service: timer.pause
+    target:
+      area_id: toilet
+  mode: queued
+  max: 10
+- id: '1641238468956'
+  alias: Cellar Motion-activated Light
+  description: ''
+  use_blueprint:
+    path: homeassistant/motion_light.yaml
+    input:
+      motion_entity: binary_sensor.motion_sensor_1_occupancy
+      light_target:
+        area_id: 9fa5ef4d3cf2d9322333bca777b2edea
+      no_motion_wait: 300
+- id: '1641915079598'
+  alias: Bathroom light auto on off
+  description: ''
+  trigger:
+  - platform: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.bathroom
+    id: timer_finished
+  - type: motion
+    platform: device
+    device_id: ef2bf7a7bb707319e79c8a8b502267c8
+    entity_id: binary_sensor.aqara_pir_2_occupancy
+    domain: binary_sensor
+    id: motion_detected
+  - platform: state
+    entity_id: binary_sensor.aqara_dw_4_contact
+    to: 'on'
+    id: door_open
+  - platform: state
+    to: 'on'
+    entity_id: light.shelly_shdm_2_3c6105e58aa9
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: timer_finished
+      sequence:
+      - service: light.turn_off
+        data: {}
+        target:
+          area_id: bathroom
+    default:
+    - service: light.turn_on
+      target:
+        area_id: bathroom
+    - service: timer.start
+      data:
+        duration: '0'
+      target:
+        area_id: bathroom
+  - condition: trigger
+    id: motion_detected
+  - condition: state
+    state: 'off'
+    entity_id: binary_sensor.aqara_dw_4_contact
+  - service: timer.pause
+    target:
+      area_id: bathroom
+  mode: queued
+  max: 10

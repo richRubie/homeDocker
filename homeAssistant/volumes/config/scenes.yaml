@@ -1,95 +1,51 @@
-- id: '1595973678649'
-  name: master bedroom bed time
+- id: '1641239820262'
+  name: Ollie bed time
   entities:
-    light.shelly_shdm_1_db34d3:
-      brightness: 61
-      friendly_name: Master - Main light
-      has_firmware_update: false
-      ip_address: 192.168.1.12
-      over_temp: false
+    switch.starlight:
+      friendly_name: Starlight
+      state: 'on'
+    switch.starlights_led:
+      icon: mdi:led-on
+      friendly_name: Starlights LED
+      state: 'on'
+    switch.shelly_shsw_1_483fda9421d1:
+      restored: true
+      friendly_name: Shelly 1 - 483FDA9421D1
+      supported_features: 0
+      state: unavailable
+    light.shelly_shsw_1_483fda9421d1:
+      supported_color_modes:
+      - onoff
+      color_mode: onoff
+      shelly_type: Shelly 1
+      shelly_id: 483FDA9421D1
+      ip_address: 192.168.1.102
+      room: Ollie
       protocols:
-      - CoAP-discovery
       - CoAP-msg
       - poll
-      - mDns
-      room: Master
-      shelly_id: DB34D3
+      has_firmware_update: false
+      switch: false
+      friendly_name: Ollie - Lamp
+      supported_features: 0
+      state: 'on'
+    light.shelly_shdm_1_f3a4d4:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 73
       shelly_type: Shelly Dimmer
-      state: 'on'
-      supported_features: 1
-      switch_1: false
-      switch_2: false
-    light.shelly_shdm_2_e09806954c45:
-      brightness: 68
-      friendly_name: Master - Rich
-      has_firmware_update: false
-      ip_address: 192.168.1.72
-      over_temp: false
+      shelly_id: F3A4D4
+      ip_address: 192.168.1.11
+      room: Ollie
       protocols:
-      - CoAP-discovery
+      - mDns
       - CoAP-msg
       - poll
-      - mDns
-      room: Master
-      shelly_id: E09806954C45
-      shelly_type: Shelly Dimmer 2
-      state: 'on'
-      supported_features: 1
+      over_temp: 0
+      has_firmware_update: false
       switch_1: true
       switch_2: false
-    sensor.shelly_shdm_1_db34d3_current_consumption:
-      friendly_name: Master - Main light
-      icon: mdi:flash-outline
-      ip_address: 192.168.1.12
-      room: Master
-      shelly_id: DB34D3
-      shelly_type: Shelly Dimmer
-      state: '3'
-      unit_of_measurement: W
-    sensor.shelly_shdm_1_db34d3_total_consumption:
-      device_class: power
-      friendly_name: Master - Main light - Total consumption
-      icon: mdi:flash-circle
-      ip_address: 192.168.1.12
-      room: Master
-      shelly_id: DB34D3
-      shelly_type: Shelly Dimmer
-      state: '0.33'
-      unit_of_measurement: kWh
-- id: '1595973740088'
-  name: master off
-  entities:
-    light.shelly_shdm_1_db34d3:
-      friendly_name: Master - Main light
-      has_firmware_update: false
-      ip_address: 192.168.1.12
-      over_temp: false
-      protocols:
-      - CoAP-discovery
-      - CoAP-msg
-      - poll
-      - mDns
-      room: Master
-      shelly_id: DB34D3
-      shelly_type: Shelly Dimmer
-      state: 'off'
+      friendly_name: Ollie - Light
       supported_features: 1
-      switch_1: false
-      switch_2: false
-    light.shelly_shdm_2_e09806954c45:
-      friendly_name: Master - Rich
-      has_firmware_update: false
-      ip_address: 192.168.1.72
-      over_temp: false
-      protocols:
-      - CoAP-discovery
-      - CoAP-msg
-      - poll
-      - mDns
-      room: Master
-      shelly_id: E09806954C45
-      shelly_type: Shelly Dimmer 2
-      state: 'off'
-      supported_features: 1
-      switch_1: true
-      switch_2: false
+      state: 'on'
