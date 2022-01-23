@@ -17,12 +17,14 @@ chmod +x setup.sh
         type C:\Users\RichardRubie-Todd\.ssh\id_rsa.pub | ssh pi@HOSTNAME 'cat >> .ssh/authorized_keys'
 
 
-sudo cp -rL ~/homeDocker/certbot/volumes/etc/live/redfoxfactory.co.uk ~/certStaging
+sudo cp -RL ~/homeDocker/certbot/volumes/etc/live/redfoxfactory.co.uk ~/certStaging
 sudo chown -R pi:pi ~/certStaging/
+mv ~/certStaging/redfoxfactory.co.uk/* ~/certStaging/
+rmdir ~/certStaging/redfoxfactory.co.uk
 cat ~/certStaging/privkey.pem ~/certStaging/cert.pem > ~/certStaging/combined.pem
-cp -rL ~/homeDocker/secrets/cert ~/homeDocker/secrets/certArchive/$(date +"%Y-%m-%d")
-cp -fR ~/certStaging/* ~/homeDocker/secrets/cert
-
+mkdir ~/homeDocker/secrets/certArchive/$(date +"%Y-%m-%d")
+mv ~/homeDocker/secrets/cert/* ~/homeDocker/secrets/certArchive/$(date +"%Y-%m-%d")
+mv ~/certStaging/* ~/homeDocker/secrets/cert
 
 docker-compose down && docker-compose pull && docker-compose up -d
 
