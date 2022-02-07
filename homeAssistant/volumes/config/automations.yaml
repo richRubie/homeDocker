@@ -1,5 +1,5 @@
 - id: '1599811624657'
-  alias: Turn on office lights
+  alias: Attic - Light on in morning
   description: ''
   trigger:
   - at: '8:30'
@@ -20,15 +20,16 @@
     type: turn_on
   mode: single
 - id: '1600867231219'
-  alias: Turn Off Ollie lights at 8.30am
+  alias: Back Bedroom - Lights off  in the morning
   description: ''
   trigger:
-  - at: '8:30'
+  - at: 09:00
     platform: time
   condition:
   - condition: time
     weekday:
     - mon
+    - tue
     - wed
     - thu
     - fri
@@ -47,7 +48,7 @@
     domain: light
   mode: single
 - id: '1600867375526'
-  alias: Turn on Ollie lights at 18:00
+  alias: Back Bedroom - Lights on in evening
   description: ''
   trigger:
   - at: '18:00'
@@ -68,106 +69,22 @@
     entity_id: light.shelly_shsw_1_483fda9421d1
     domain: light
   mode: single
-- id: '1604354516744'
-  alias: Tell Ollie it's bath time
-  description: ''
-  trigger:
-  - platform: time
-    at: '18:30'
-  condition: []
-  action:
-  - service: tts.google_translate_say
-    data:
-      message: Ollie, are you listening? Its shower time, please go to the bathroom
-        and get undressed.
-      entity_id: media_player.attic_display
-      language: en-uk
-  mode: single
-- id: '1609164746747'
-  alias: Turn Off Ollie main light at bed time
-  description: ''
-  trigger:
-  - at: '19:30'
-    platform: time
-  condition:
-  - condition: time
-    weekday:
-    - mon
-    - tue
-    - wed
-    - thu
-    - fri
-    - sat
-    - sun
-  action:
-  - device_id: 12a5db9394464e5faae1e777a36e0463
-    domain: light
-    entity_id: light.shelly_shdm_1_f3a4d4
-    type: turn_off
-  mode: single
-- id: '1609164821532'
-  alias: Turn Off Ollie lamp at bedtime
-  description: ''
-  trigger:
-  - at: '20:00'
-    platform: time
-  condition:
-  - condition: time
-    weekday:
-    - mon
-    - tue
-    - wed
-    - thu
-    - fri
-    - sat
-    - sun
-  action:
-  - type: turn_off
-    device_id: 763f3b38eba2b821afcbd1f1537ea25f
-    entity_id: light.shelly_shsw_1_483fda9421d1
-    domain: light
-  mode: single
-- id: '1609164909290'
-  alias: Turn Off Ollie starlights at bedtime
-  description: ''
-  trigger:
-  - platform: time
-    at: '20:45'
-  condition:
-  - condition: time
-    weekday:
-    - mon
-    - tue
-    - wed
-    - thu
-    - fri
-    - sat
-    - sun
-  action:
-  - type: turn_off
-    device_id: 01e059b1c24a4d3c9cff357c828aa6e9
-    entity_id: switch.starlight
-    domain: switch
-  mode: single
 - id: '1609969268420'
-  alias: turn on masterbedroom lights at 7pm
+  alias: Master bedroom - Wall lights on in evening
   description: ''
   trigger:
   - platform: time
-    at: '19:00'
+    at: '18:00'
   condition: []
   action:
-  - domain: light
-    entity_id: light.shelly_shdm_2_e09806954c45
-    device_id: 5b37f965dd914df99ffa9e725c576fd3
-    type: turn_on
-  - domain: light
-    entity_id: light.shelly_shdm_2_e0980695b38b
-    device_id: 4c9beab5f0cc42ddacf2988ab9bc8e90
-    type: turn_on
+  - service: light.turn_on
+    target:
+      device_id:
+      - 5b37f965dd914df99ffa9e725c576fd3
+      - 4c9beab5f0cc42ddacf2988ab9bc8e90
   mode: single
 - id: '1613940955727'
-  alias: Set landing light to 10% at 7pm
+  alias: Landing - Light on dim in morning
   description: ''
   trigger:
   - platform: time
@@ -181,7 +98,7 @@
     entity_id: light.shelly_shdm_1_f3a619
   mode: single
 - id: '1613941020607'
-  alias: Set landing light to 100% in the Morning
+  alias: Landing - Lights on full in morning
   description: ''
   trigger:
   - platform: time
@@ -195,18 +112,8 @@
     target:
       entity_id: light.shelly_shdm_1_f3a619
   mode: single
-- id: '1632403358752'
-  alias: Toilet - Motion for light
-  description: 'Toilet '
-  use_blueprint:
-    path: homeassistant/motion_light.yaml
-    input:
-      no_motion_wait: 307
-      light_target:
-        area_id: toilet
-      motion_entity: binary_sensor.aqara_pir_3_occupancy
 - id: '1632834080174'
-  alias: Raining and Attic windows are open notification
+  alias: Attic - Send Notification - Raining and windows are open
   description: ''
   trigger:
   - platform: state
@@ -235,7 +142,7 @@
     message: Attic windows are open
   mode: single
 - id: '1636967707722'
-  alias: Set landing light to 50% in the Morning
+  alias: Landing - Lights brighter in the morning
   description: ''
   trigger:
   - platform: time
@@ -250,7 +157,7 @@
       entity_id: light.shelly_shdm_1_f3a619
   mode: single
 - id: '1640619543027'
-  alias: Toilet light auto on off
+  alias: Toilet - Light auto on off
   description: ''
   trigger:
   - platform: event
@@ -302,7 +209,7 @@
   mode: queued
   max: 10
 - id: '1641238468956'
-  alias: Cellar Motion-activated Light
+  alias: Cellar  - Motion-activated Light
   description: ''
   use_blueprint:
     path: homeassistant/motion_light.yaml
@@ -312,14 +219,9 @@
         area_id: 9fa5ef4d3cf2d9322333bca777b2edea
       no_motion_wait: 300
 - id: '1641915079598'
-  alias: Bathroom light auto on off
+  alias: Bathroom  - Light on
   description: ''
   trigger:
-  - platform: event
-    event_type: timer.finished
-    event_data:
-      entity_id: timer.bathroom
-    id: timer_finished
   - type: motion
     platform: device
     device_id: ef2bf7a7bb707319e79c8a8b502267c8
@@ -330,29 +232,27 @@
     entity_id: binary_sensor.aqara_dw_4_contact
     to: 'on'
     id: door_open
-  - platform: state
-    to: 'on'
-    entity_id: light.shelly_shdm_2_3c6105e58aa9
-  condition: []
+  - type: turned_on
+    platform: device
+    device_id: 0a0a33ace30a18735189d4e79484f5e8
+    entity_id: binary_sensor.shelly_shdm_2_3c6105e58aa9_1_switch
+    domain: binary_sensor
+    id: Light on
+  condition:
+  - condition: or
+    conditions:
+    - condition: numeric_state
+      entity_id: sensor.aqara_pir_2_illuminance
+      below: '50'
   action:
-  - choose:
-    - conditions:
-      - condition: trigger
-        id: timer_finished
-      sequence:
-      - service: light.turn_off
-        data: {}
-        target:
-          area_id: bathroom
-    default:
-    - service: light.turn_on
-      target:
-        area_id: bathroom
-    - service: timer.start
-      data:
-        duration: '0'
-      target:
-        area_id: bathroom
+  - service: light.turn_on
+    target:
+      area_id: bathroom
+  - service: timer.start
+    data:
+      duration: '0'
+    target:
+      area_id: bathroom
   - condition: trigger
     id: motion_detected
   - condition: state
@@ -363,3 +263,52 @@
       area_id: bathroom
   mode: queued
   max: 10
+- id: '1643551976381'
+  alias: Bathroom - Set brightness
+  description: ''
+  trigger:
+  - platform: time
+    at: 00:30
+    id: Night
+  - platform: time
+    at: 07:00
+    id: Morning
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: Night
+      sequence:
+      - service: input_number.set_value
+        target:
+          area_id: bathroom
+        data:
+          value: 30
+    - conditions:
+      - condition: trigger
+        id: Morning
+      sequence:
+      - service: input_number.set_value
+        target:
+          area_id: bathroom
+        data:
+          value: 100
+    default: []
+  mode: single
+- id: '1643553622757'
+  alias: Bathroom - Light off
+  description: ''
+  trigger:
+  - platform: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.bathroom
+  condition: []
+  action:
+  - service: light.turn_off
+    target:
+      area_id: bathroom
+    data:
+      transition: 30
+  mode: single

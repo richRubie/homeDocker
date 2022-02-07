@@ -34,12 +34,12 @@ devices:
   '0x00158d000678e1b6':
     friendly_name: Aqara HT 8
   '0x00158d0003cf3b89':
-    friendly_name: Aqara DW 1
+    friendly_name: Aqara DW 1 - Attic Window Front
   '0x00158d0002ec53d4':
-    friendly_name: Aqara DW 2
+    friendly_name: Aqara DW 2 - Attic Window Back
   '0x00158d00025d69e9':
-    friendly_name: Aqara DW 3
+    friendly_name: Aqara DW 3 - Toilet Door
   '0x00158d0003ceb910':
-    friendly_name: Aqara DW 4
+    friendly_name: Aqara DW 4 - Bathroom Door
 advanced:
   log_level: info

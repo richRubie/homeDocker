@@ -1,8 +1,4 @@
 homeassistant:
-#   name: Home
-#   elevation: 430
-#   unit_system: metric
-#   # external_url: "https://www.example.com"
   internal_url: https://pi2.redfoxfactory.co.uk:2053
 
 http:
@@ -39,47 +35,9 @@ mqtt:
     topic: 'hass/status'
     payload: 'offline'
 
-# Example configuration.yaml entry
-# nest:
-#   client_id: !secret nest_client_id
-#   client_secret: !secret nest_client_secret
-#   project_id: !secret nest_project_id
 
 nest:
-  client_id: 406265859612-ngrcrnqast17ifokkr7j45kl3korgtud.apps.googleusercontent.com
-  client_secret: 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
-  project_id: 763fe911-d2ef-4891-82af-30db23a10919
+  client_id: !secret nest_client_id
+  client_secret: !secret nest_client_secret
+  project_id: !secret nest_project_id
 
-sensor:
-  - platform: template
-    sensors:
-      # switch_bread_maker_amps:
-      #   friendly_name_template: "{{ states.switch.bread_maker.name}} Current"
-      #   value_template: '{{ states.switch.bread_maker.attributes["current_a"] | float }}'
-      #   unit_of_measurement: 'A'
-      switch_bread_maker_watts:
-        friendly_name_template: "{{ states.switch.bread_maker.name}} Power"
-        value_template: '{{ states.switch.bread_maker.attributes["current_power_w"] | float }}'
-        unit_of_measurement: 'W'
-      # switch_bread_maker_total_kwh:
-      #   friendly_name_template: "{{ states.switch.bread_maker.name}} Total Consumption"
-      #   value_template: '{{ states.switch.bread_maker.attributes["total_energy_kwh"] | float }}'
-      #   unit_of_measurement: 'kWh'
-      # switch_bread_maker_volts:
-      #   friendly_name_template: "{{ states.switch.bread_maker.name}} Voltage"
-      #   value_template: '{{ states.switch.bread_maker.attributes["voltage"] | float }}'
-      #   unit_of_measurement: 'V'
-      # switch_bread_maker_today_kwh:
-      #   friendly_name_template: "{{ states.switch.bread_maker.name}} Today's Consumption"
-      #   value_template: '{{ states.switch.bread_maker.attributes["today_energy_kwh"] | float }}'
-      #   unit_of_measurement: 'kWh'
-
-circadian_lighting:
-
-switch:
-  - platform: circadian_lighting
-    lights_brightness:
-      - light.shelly_shdm_1_f3a619
-    min_brightness: 10
-    max_brightness: 100
-    
