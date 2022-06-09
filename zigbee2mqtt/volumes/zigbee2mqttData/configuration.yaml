@@ -4,42 +4,44 @@ mqtt:
   base_topic: zigbee2mqtt
   server: mqtt://localhost
 serial:
-  port: /dev/ttyACM0
+  port: /dev/ttyUSB0
 frontend:
   port: 8081
+advanced:
+  log_level: info
+blocklist:
+  - '0x000b57fffeba5e11'
+  - '0x000d6ffffe0d2189'
 devices:
-  '0x00158d0005bd8d7f':
-    friendly_name: Aqara HT 1
   '0x00158d000588ea32':
-    friendly_name: Aqara HT 2
-  '0x00158d000588e9f4':
-    friendly_name: Aqara HT 3
+    friendly_name: Aqara HT 2 - Back Bedroom
   '0x00158d0005889532':
-    friendly_name: Aqara HT 4
+    friendly_name: Aqara HT 4 - Living Room
   '0x00158d00058a6242':
-    friendly_name: Aqara HT 5
-  '0x00158d00058a650b':
-    friendly_name: Aqara HT 6
+    friendly_name: Aqara HT 5 - Dining Room
   '0x00158d00054d43fa':
-    friendly_name: Aqara PIR 1
+    friendly_name: Aqara PIR 1 - Cellar
   '0x00158d00054d4578':
-    friendly_name: Aqara PIR 2
-    occupancy_timeout: 30
+    friendly_name: Aqara PIR 2 - Toilet
   '0x847127fffe329086':
-    friendly_name: Ikea Switch 1
+    friendly_name: IKEA Switch 1 - Landing
   '0x00158d00068b38c9':
-    friendly_name: Aqara HT 7
+    friendly_name: Aqara HT 7 - Bathroom
   '0x00158d0006c032d8':
-    friendly_name: Aqara PIR 3
-  '0x00158d000678e1b6':
-    friendly_name: Aqara HT 8
+    friendly_name: Aqara PIR 3 - Bathroom
   '0x00158d0003cf3b89':
     friendly_name: Aqara DW 1 - Attic Window Front
   '0x00158d0002ec53d4':
     friendly_name: Aqara DW 2 - Attic Window Back
-  '0x00158d00025d69e9':
-    friendly_name: Aqara DW 3 - Toilet Door
   '0x00158d0003ceb910':
     friendly_name: Aqara DW 4 - Bathroom Door
-advanced:
-  log_level: info
+  '0x2c1165fffea1800f':
+    friendly_name: IKEA Switch 2 - Dining Room
+  '0x00158d000588e9f4':
+    friendly_name: Aqara HT 3 - Office
+  '0x00158d00025d69e9':
+    friendly_name: Aqara DW 3 - Toilet Door
+  '0x00158d00058a650b':
+    friendly_name: Aqara HT 6 - Attic
+  '0x00158d0005bd8d7f':
+    friendly_name: Aqara HT 1 - Front Bedroom
