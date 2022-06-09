@@ -34,18 +34,10 @@
     - thu
     - fri
   action:
-  - device_id: 12a5db9394464e5faae1e777a36e0463
-    domain: light
-    entity_id: light.shelly_shdm_1_f3a4d4
-    type: turn_off
-  - type: turn_off
-    device_id: 01e059b1c24a4d3c9cff357c828aa6e9
-    entity_id: switch.starlight
-    domain: switch
-  - type: turn_off
-    device_id: 763f3b38eba2b821afcbd1f1537ea25f
-    entity_id: light.shelly_shsw_1_483fda9421d1
-    domain: light
+  - service: light.turn_off
+    data: {}
+    target:
+      area_id: 0dd7d3bda1b345958f4409c9cb3c3318
   mode: single
 - id: '1600867375526'
   alias: Back Bedroom - Lights on in evening
@@ -55,19 +47,11 @@
     platform: time
   condition: []
   action:
-  - brightness_pct: 50
-    device_id: 12a5db9394464e5faae1e777a36e0463
-    domain: light
-    entity_id: light.shelly_shdm_1_f3a4d4
-    type: turn_on
-  - type: turn_on
-    device_id: 01e059b1c24a4d3c9cff357c828aa6e9
-    entity_id: switch.starlight
-    domain: switch
-  - type: turn_on
-    device_id: 763f3b38eba2b821afcbd1f1537ea25f
-    entity_id: light.shelly_shsw_1_483fda9421d1
-    domain: light
+  - service: light.turn_on
+    data:
+      brightness_pct: 50
+    target:
+      area_id: 0dd7d3bda1b345958f4409c9cb3c3318
   mode: single
 - id: '1609969268420'
   alias: Master bedroom - Wall lights on in evening
@@ -84,7 +68,7 @@
       - 4c9beab5f0cc42ddacf2988ab9bc8e90
   mode: single
 - id: '1613940955727'
-  alias: Landing - Light on dim in morning
+  alias: Landing - Light on dim in evening
   description: ''
   trigger:
   - platform: time
@@ -172,7 +156,8 @@
     domain: binary_sensor
     id: motion_detected
   - platform: state
-    entity_id: binary_sensor.aqara_dw_3_contact
+    entity_id:
+    - binary_sensor.aqara_dw_3_toilet_door_contact
     to: 'on'
     id: door_open
   - platform: state
@@ -193,6 +178,7 @@
     - service: light.turn_on
       target:
         area_id: toilet
+      data: {}
     - service: timer.start
       data:
         duration: '0'
@@ -201,11 +187,12 @@
   - condition: trigger
     id: motion_detected
   - condition: state
-    entity_id: binary_sensor.aqara_dw_3_contact
+    entity_id: binary_sensor.aqara_dw_3_toilet_door_contact
     state: 'off'
   - service: timer.pause
     target:
       area_id: toilet
+    data: {}
   mode: queued
   max: 10
 - id: '1641238468956'
@@ -229,7 +216,8 @@
     domain: binary_sensor
     id: motion_detected
   - platform: state
-    entity_id: binary_sensor.aqara_dw_4_contact
+    entity_id:
+    - binary_sensor.aqara_dw_4_bathroom_door_contact
     to: 'on'
     id: door_open
   - type: turned_on
@@ -248,6 +236,7 @@
   - service: light.turn_on
     target:
       area_id: bathroom
+    data: {}
   - service: timer.start
     data:
       duration: '0'
@@ -257,10 +246,11 @@
     id: motion_detected
   - condition: state
     state: 'off'
-    entity_id: binary_sensor.aqara_dw_4_contact
+    entity_id: binary_sensor.aqara_dw_4_bathroom_door_contact
   - service: timer.pause
     target:
       area_id: bathroom
+    data: {}
   mode: queued
   max: 10
 - id: '1643551976381'
