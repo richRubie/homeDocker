@@ -152,7 +152,7 @@
   - type: motion
     platform: device
     device_id: fb70afcf862ef62a6c6580eae94a1da9
-    entity_id: binary_sensor.aqara_pir_3_occupancy
+    entity_id: binary_sensor.aqara_pir_3_toilet_occupancy
     domain: binary_sensor
     id: motion_detected
   - platform: state
@@ -161,9 +161,20 @@
     to: 'on'
     id: door_open
   - platform: state
-    entity_id: light.shelly_shdm_2_e8db84d787f2
-    to: 'on'
-  condition: []
+    entity_id:
+    - binary_sensor.shelly_shdm_2_e8db84d787f2_2_switch
+    - binary_sensor.shelly_shdm_2_e8db84d787f2_1_switch
+    id: switchToggle
+  condition:
+  - condition: not
+    conditions:
+    - condition: and
+      conditions:
+      - condition: trigger
+        id: switchToggle
+      - condition: state
+        entity_id: light.shelly_shdm_2_e8db84d787f2
+        state: 'off'
   action:
   - choose:
     - conditions:
@@ -188,13 +199,13 @@
     id: motion_detected
   - condition: state
     entity_id: binary_sensor.aqara_dw_3_toilet_door_contact
-    state: 'off'
+    state: 'on'
+    attribute: contact
   - service: timer.pause
     target:
       area_id: toilet
     data: {}
-  mode: queued
-  max: 10
+  mode: single
 - id: '1641238468956'
   alias: Cellar  - Motion-activated Light
   description: ''
@@ -242,15 +253,17 @@
       duration: '0'
     target:
       area_id: bathroom
-  - condition: trigger
-    id: motion_detected
-  - condition: state
-    state: 'off'
-    entity_id: binary_sensor.aqara_dw_4_bathroom_door_contact
-  - service: timer.pause
-    target:
-      area_id: bathroom
-    data: {}
+  - if:
+    - condition: trigger
+      id: motion_detected
+    - condition: state
+      entity_id: binary_sensor.aqara_dw_4_bathroom_door_contact
+      state: 'off'
+    then:
+    - service: timer.pause
+      data: {}
+      target:
+        area_id: bathroom
   mode: queued
   max: 10
 - id: '1643551976381'
@@ -301,4 +314,102 @@
       area_id: bathroom
     data:
       transition: 30
+  mode: single
+- id: '1654895474996'
+  alias: Bathroom  - Light on (Duplicate)
+  description: ''
+  trigger:
+  - type: motion
+    platform: device
+    device_id: ef2bf7a7bb707319e79c8a8b502267c8
+    entity_id: binary_sensor.aqara_pir_2_occupancy
+    domain: binary_sensor
+    id: motion_detected
+  - platform: state
+    entity_id:
+    - binary_sensor.aqara_dw_4_bathroom_door_contact
+    to: 'on'
+    id: door_open
+  - platform: state
+    entity_id:
+    - binary_sensor.shelly_shdm_2_3c6105e58aa9_2_switch
+    - binary_sensor.shelly_shdm_2_3c6105e58aa9_1_switch
+    id: switchToggle
+  condition:
+  - condition: or
+    conditions:
+    - condition: trigger
+      id: motion_detected
+    - condition: trigger
+      id: door_open
+    - condition: and
+      conditions:
+      - condition: trigger
+        id: switchToggle
+      - condition: state
+        entity_id: light.shelly_shdm_2_3c6105e58aa9
+        state: 'on'
+  action:
+  - choose:
+    - conditions:
+      - condition: and
+        conditions:
+        - condition: or
+          conditions:
+          - condition: trigger
+            id: motion_detected
+          - condition: trigger
+            id: door_open
+        - condition: state
+          entity_id: light.shelly_shdm_2_3c6105e58aa9
+          state: 'off'
+        - condition: numeric_state
+          entity_id: sensor.aqara_pir_2_illuminance_lux
+          below: '50'
+          attribute: illuminance
+      sequence:
+      - if:
+        - condition: time
+          before: 07:00:00
+        then:
+        - service: light.turn_on
+          data:
+            brightness_pct: 30
+          target:
+            area_id: bathroom
+        else:
+        - service: light.turn_on
+          data:
+            brightness_pct: 100
+          target:
+            area_id: bathroom
+    - conditions:
+      - condition: and
+        conditions:
+        - condition: trigger
+          id: switchToggle
+        - condition: state
+          entity_id: light.shelly_shdm_2_3c6105e58aa9
+          state: 'on'
+      sequence:
+      - service: light.turn_on
+        data:
+          brightness_pct: 100
+        target:
+          area_id: bathroom
+  - service: timer.start
+    data: {}
+    target:
+      area_id: bathroom
+  - if:
+    - condition: trigger
+      id: motion_detected
+    - condition: state
+      entity_id: binary_sensor.aqara_dw_4_bathroom_door_contact
+      state: 'on'
+    then:
+    - service: timer.pause
+      data: {}
+      target:
+        area_id: bathroom
   mode: single
