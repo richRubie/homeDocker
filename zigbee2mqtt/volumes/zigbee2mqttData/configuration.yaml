@@ -21,14 +21,10 @@ devices:
     friendly_name: Aqara HT 5 - Dining Room
   '0x00158d00054d43fa':
     friendly_name: Aqara PIR 1 - Cellar
-  '0x00158d00054d4578':
-    friendly_name: Aqara PIR 2 - Toilet
-  '0x847127fffe329086':
-    friendly_name: IKEA Switch 1 - Landing
   '0x00158d00068b38c9':
     friendly_name: Aqara HT 7 - Bathroom
   '0x00158d0006c032d8':
-    friendly_name: Aqara PIR 3 - Bathroom
+    friendly_name: Aqara PIR 3 - Toilet
   '0x00158d0003cf3b89':
     friendly_name: Aqara DW 1 - Attic Window Front
   '0x00158d0002ec53d4':
@@ -45,3 +41,11 @@ devices:
     friendly_name: Aqara HT 6 - Attic
   '0x00158d0005bd8d7f':
     friendly_name: Aqara HT 1 - Front Bedroom
+  '0x847127fffe329086':
+    friendly_name: IKEA Switch 1 - Landing
+  '0x0c4314fffef7874a':
+    friendly_name: IKEA Switch 3 - Office
+  '0x00158d000678e1b6':
+    friendly_name: Aqara HT 8 - Toilet
+  '0x00158d00054d4578':
+    friendly_name: Aqara PIR 2 - Bathroom
