@@ -34,10 +34,3 @@ mqtt:
   will_message:
     topic: 'hass/status'
     payload: 'offline'
-
-
-nest:
-  client_id: !secret nest_client_id
-  client_secret: !secret nest_client_secret
-  project_id: !secret nest_project_id
-

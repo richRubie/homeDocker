@@ -413,3 +413,71 @@
       target:
         area_id: bathroom
   mode: single
+- id: '1662306503617'
+  alias: Cellar - Washing Machine Finished
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.washing_machine_washer_job_state
+    to: finish
+  condition:
+  - condition: time
+    after: 07:00:00
+    before: '22:00:00'
+    weekday:
+    - sun
+    - sat
+    - fri
+    - thu
+    - wed
+    - tue
+    - mon
+  action:
+  - service: media_player.play_media
+    target:
+      entity_id: media_player.ha_notifications
+    data:
+      media_content_id: media-source://tts/google_translate?message=Washing+machine+has+finished
+      media_content_type: provider
+    metadata:
+      title: Washing machine has finished
+      thumbnail: https://brands.home-assistant.io/_/google_translate/logo.png
+      media_class: app
+      children_media_class:
+      navigateIds:
+      - {}
+      - media_content_type: app
+        media_content_id: media-source://tts
+      - media_content_type: provider
+        media_content_id: media-source://tts/google_translate?message=Washing+machine+has+finished
+  mode: single
+- id: '1662306683666'
+  alias: Cellar - Leak detected
+  description: ''
+  trigger:
+  - type: moist
+    platform: device
+    device_id: 746db2eea236db8a701b5ee73e5551cd
+    entity_id: binary_sensor.water_leak_sensor
+    domain: binary_sensor
+  condition: []
+  action:
+  - service: media_player.play_media
+    target:
+      entity_id: media_player.ha_notifications
+    data:
+      media_content_id: media-source://tts/google_translate?message=There+is+a+leak+in+the+cellar
+      media_content_type: provider
+    metadata:
+      title: There is a leak in the cellar
+      thumbnail: https://brands.home-assistant.io/_/google_translate/logo.png
+      media_class: app
+      children_media_class:
+      navigateIds:
+      - {}
+      - media_content_type: app
+        media_content_id: media-source://tts
+      - media_content_type: provider
+        media_content_id: media-source://tts/google_translate?message=There+is+a+leak+in+the+cellar
+  mode: single

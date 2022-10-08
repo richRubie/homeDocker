@@ -3,3 +3,11 @@ docker-compose down && docker-compose pull && docker-compose up -d
 sudo shutdown -r
 
 docker ps -a
+
+sudo apt update -y
+sudo apt upgrade -y
+
+disk space
+df -h
+
+docker image prune
