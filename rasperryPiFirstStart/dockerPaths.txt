@@ -1,0 +1,4 @@
+cd ~/homeDocker/certbot/
+cd ~/homeDocker/homeAssistant/
+cd ~/homeDocker/pihole/piholev0/
+cd ~/homeDocker/zigbee2mqtt/

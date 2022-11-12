@@ -25,12 +25,7 @@ automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
 
-mqtt:
-  discovery: true
-  broker: pi2.redfoxfactory.co.uk
-  birth_message:
-    topic: 'hass/status'
-    payload: 'online'
-  will_message:
-    topic: 'hass/status'
-    payload: 'offline'
+
+rest_command:
+  shelly_brightness:
+    url: "http://{{ ip }}/light/0?brightness={{ brightness }}"

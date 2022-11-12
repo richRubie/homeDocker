@@ -420,7 +420,7 @@
   - platform: state
     entity_id:
     - sensor.washing_machine_washer_job_state
-    to: finish
+    to: none
   condition:
   - condition: time
     after: 07:00:00
