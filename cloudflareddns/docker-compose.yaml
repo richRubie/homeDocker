@@ -6,6 +6,6 @@ services:
     env_file:
       - ../secrets/cloudflare_ddns/variables.env
     environment:
-      - ZONE=redfoxfactory.co.uk
+      - ZONE=rubie-todd.uk
       - SUBDOMAIN=home
       - PROXIED=false
