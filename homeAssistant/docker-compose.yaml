@@ -9,6 +9,7 @@ services:
       - ./volumes/config:/config
       - ../secrets/cert:/config/ssl
       - ../secrets/homeAssistant/google-assistant.json:/config/google-assistant.json
+      - ../secrets/homeAssistant/googlecloud.json:/config/googlecloud.json
       - ../secrets/homeAssistant/secrets.yaml:/config/secrets.yaml
     restart: unless-stopped
     privileged: true

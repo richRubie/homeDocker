@@ -216,56 +216,6 @@
       light_target:
         area_id: 9fa5ef4d3cf2d9322333bca777b2edea
       no_motion_wait: 300
-- id: '1641915079598'
-  alias: Bathroom  - Light on
-  description: ''
-  trigger:
-  - type: motion
-    platform: device
-    device_id: ef2bf7a7bb707319e79c8a8b502267c8
-    entity_id: binary_sensor.aqara_pir_2_occupancy
-    domain: binary_sensor
-    id: motion_detected
-  - platform: state
-    entity_id:
-    - binary_sensor.aqara_dw_4_bathroom_door_contact
-    to: 'on'
-    id: door_open
-  - type: turned_on
-    platform: device
-    device_id: 0a0a33ace30a18735189d4e79484f5e8
-    entity_id: binary_sensor.shelly_shdm_2_3c6105e58aa9_1_switch
-    domain: binary_sensor
-    id: Light on
-  condition:
-  - condition: or
-    conditions:
-    - condition: numeric_state
-      entity_id: sensor.aqara_pir_2_illuminance
-      below: '50'
-  action:
-  - service: light.turn_on
-    target:
-      area_id: bathroom
-    data: {}
-  - service: timer.start
-    data:
-      duration: '0'
-    target:
-      area_id: bathroom
-  - if:
-    - condition: trigger
-      id: motion_detected
-    - condition: state
-      entity_id: binary_sensor.aqara_dw_4_bathroom_door_contact
-      state: 'off'
-    then:
-    - service: timer.pause
-      data: {}
-      target:
-        area_id: bathroom
-  mode: queued
-  max: 10
 - id: '1643551976381'
   alias: Bathroom - Set brightness
   description: ''
@@ -299,24 +249,8 @@
           value: 100
     default: []
   mode: single
-- id: '1643553622757'
-  alias: Bathroom - Light off
-  description: ''
-  trigger:
-  - platform: event
-    event_type: timer.finished
-    event_data:
-      entity_id: timer.bathroom
-  condition: []
-  action:
-  - service: light.turn_off
-    target:
-      area_id: bathroom
-    data:
-      transition: 30
-  mode: single
 - id: '1654895474996'
-  alias: Bathroom  - Light on (Duplicate)
+  alias: Bathroom  - Light on
   description: ''
   trigger:
   - type: motion
@@ -420,7 +354,8 @@
   - platform: state
     entity_id:
     - sensor.washing_machine_washer_job_state
-    to: none
+    to: finish
+    from: spin
   condition:
   - condition: time
     after: 07:00:00
@@ -438,11 +373,11 @@
     target:
       entity_id: media_player.ha_notifications
     data:
-      media_content_id: media-source://tts/google_translate?message=Washing+machine+has+finished
+      media_content_id: media-source://tts/cloud?message=Washing+machine+has+finished&language=en-GB&gender=female
       media_content_type: provider
     metadata:
       title: Washing machine has finished
-      thumbnail: https://brands.home-assistant.io/_/google_translate/logo.png
+      thumbnail: https://brands.home-assistant.io/_/cloud/logo.png
       media_class: app
       children_media_class:
       navigateIds:
@@ -450,7 +385,7 @@
       - media_content_type: app
         media_content_id: media-source://tts
       - media_content_type: provider
-        media_content_id: media-source://tts/google_translate?message=Washing+machine+has+finished
+        media_content_id: media-source://tts/cloud?message=Washing+machine+has+finished&language=en-GB&gender=female
   mode: single
 - id: '1662306683666'
   alias: Cellar - Leak detected
@@ -480,4 +415,9 @@
         media_content_id: media-source://tts
       - media_content_type: provider
         media_content_id: media-source://tts/google_translate?message=There+is+a+leak+in+the+cellar
+  - delay:
+      hours: 0
+      minutes: 30
+      seconds: 0
+      milliseconds: 0
   mode: single

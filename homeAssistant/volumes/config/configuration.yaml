@@ -1,5 +1,20 @@
 homeassistant:
-  internal_url: https://pi2.redfoxfactory.co.uk:2053
+  internal_url: https://pi2.rubie-todd.uk:2053
+  country: GB
+  currency: GBP
+  time_zone: "Europe/London"
+  unit_system: metric
+  customize_glob:
+    sensor.shelly_*_total_consumption:
+      last_reset: '1970-01-01T00:00:00+00:00'
+      state_class: total_increasing
+      device_class: energy
+    sensor.shelly_*_current_consumption:
+      state_class: measurement
+      device_class: power
+    sensor.shelly_*_temperature:
+      device_class: temperature
+      state_class: measurement
 
 http:
  server_port: 2053
@@ -11,14 +26,15 @@ default_config:
 
 # Text to speech
 tts:
-  - platform: google_translate
-    language: en-uk
-    # base_url: https://pi1.redfoxfactory.co.uk:2053
+  - platform: google_cloud
+    key_file: googlecloud.json
+    voice: en-GB-Standard-F
+    speed: 1.1
 
-google_assistant:
-  report_state: true
-  project_id: home-automation-337120
-  service_account: !include google-assistant.json
+# google_assistant:
+#   report_state: true
+#   project_id: home-automation-337120
+#   service_account: !include google-assistant.json
 
 group: !include groups.yaml
 automation: !include automations.yaml
