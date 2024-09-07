@@ -1,1 +1,88 @@
-[]
+- id: '1696346571884'
+  name: Dining Room Off
+  entities:
+    switch.ikea_switch_2_dining_room:
+      linkquality: 61
+      power_on_behavior: previous
+      update:
+        installed_version: 587765297
+        latest_version: 587765297
+        state: idle
+      update_available: false
+      friendly_name: IKEA Switch 2 - Dining Room
+      state: 'off'
+    light.living_room_lamp:
+      supported_color_modes:
+      - brightness
+      friendly_name: Lamp
+      supported_features: 32
+      state: 'off'
+    light.shelly_shdm_2_e0980695b097:
+      supported_color_modes:
+      - brightness
+      shelly_type: Shelly Dimmer 2
+      shelly_id: E0980695B097
+      ip_address: 192.168.1.43
+      room: Dining room
+      protocols:
+      - CoAP-msg
+      - poll
+      - CoAP-discovery
+      over_temp: 0
+      has_firmware_update: false
+      switch_1: false
+      switch_2: false
+      friendly_name: Dining room - Ceiling Light
+      supported_features: 1
+      state: 'off'
+    switch.shelly_shdm_2_e0980695b097_firmware_update:
+      restored: true
+      icon: mdi:download
+      friendly_name: Dining room - Ceiling Light - Download new firmware
+      supported_features: 0
+      state: unavailable
+  metadata: {}
+- id: '1696346733211'
+  name: Dining Room On
+  entities:
+    switch.ikea_switch_2_dining_room:
+      linkquality: 43
+      power_on_behavior: previous
+      update:
+        installed_version: 587765297
+        latest_version: 587765297
+        state: idle
+      update_available: false
+      friendly_name: IKEA Switch 2 - Dining Room
+      state: 'on'
+    light.living_room_lamp:
+      supported_color_modes:
+      - brightness
+      friendly_name: Lamp
+      supported_features: 32
+      color_mode: brightness
+      brightness: 255
+      state: 'on'
+    light.shelly_shdm_2_e0980695b097:
+      supported_color_modes:
+      - brightness
+      shelly_type: Shelly Dimmer 2
+      shelly_id: E0980695B097
+      ip_address: 192.168.1.43
+      room: Dining room
+      protocols:
+      - CoAP-msg
+      - poll
+      - CoAP-discovery
+      over_temp: 0
+      has_firmware_update: false
+      switch_1: false
+      switch_2: false
+      friendly_name: Dining room - Ceiling Light
+      supported_features: 1
+      color_mode: brightness
+      brightness: 255
+      state: 'on'
+  metadata:
+    light.shelly_shdm_2_e0980695b097:
+      entity_only: true

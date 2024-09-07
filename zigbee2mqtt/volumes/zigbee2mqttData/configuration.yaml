@@ -9,9 +9,7 @@ frontend:
   port: 8081
 advanced:
   log_level: info
-blocklist:
-  - '0x000b57fffeba5e11'
-  - '0x000d6ffffe0d2189'
+blocklist: []
 devices:
   '0x00158d000588ea32':
     friendly_name: Aqara HT 2 - Back Bedroom
@@ -49,3 +47,19 @@ devices:
     friendly_name: Aqara HT 8 - Toilet
   '0x00158d00054d4578':
     friendly_name: Aqara PIR 2 - Bathroom
+  '0x000b57fffeba5e11':
+    friendly_name: IKEA TRADFRI driver - Kitchen Cabinet Right
+  '0x000d6ffffe0d2189':
+    friendly_name: IKEA TRADFRI remote - Kitchen
+  '0x385b44fffe539ef2':
+    friendly_name: IKEA TRADFRI driver - Kitchen Cabinet Left
+  '0x00158d0006d46d4c':
+    friendly_name: Aqara PIR 4 - Cellar
+  '0x00178801082599c5':
+    friendly_name: '0x00178801082599c5'
+groups:
+  '1':
+    friendly_name: Kitchen cabinet lights
+    devices:
+      - 0x385b44fffe539ef2/1
+      - 0x000b57fffeba5e11/1

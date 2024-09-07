@@ -77,9 +77,10 @@
   action:
   - service: light.turn_on
     data:
-      brightness_pct: 10
       transition: 300
-    entity_id: light.shelly_shdm_1_f3a619
+      brightness_pct: 12
+    target:
+      entity_id: light.shelly_shdm_1_f3a619
   mode: single
 - id: '1613941020607'
   alias: Landing - Lights on full in morning
@@ -119,11 +120,23 @@
       entity_id: binary_sensor.aqara_dw_2_contact
       domain: binary_sensor
   action:
-  - device_id: d840b2d682f64d2895b9f4faff8af720
-    domain: mobile_app
-    type: notify
-    title: I'ts going to rain
-    message: Attic windows are open
+  - service: media_player.play_media
+    target:
+      entity_id: media_player.ha_notifications
+    data:
+      media_content_id: media-source://tts/cloud?message=It%27s+going+to+rain&language=en-GB&voice=LibbyNeural
+      media_content_type: provider
+    metadata:
+      title: It's going to rain
+      thumbnail: https://brands.home-assistant.io/_/cloud/logo.png
+      media_class: app
+      children_media_class:
+      navigateIds:
+      - {}
+      - media_content_type: app
+        media_content_id: media-source://tts
+      - media_content_type: provider
+        media_content_id: media-source://tts/cloud?message=It%27s+going+to+rain&language=en-GB&voice=LibbyNeural
   mode: single
 - id: '1636967707722'
   alias: Landing - Lights brighter in the morning
@@ -212,10 +225,10 @@
   use_blueprint:
     path: homeassistant/motion_light.yaml
     input:
-      motion_entity: binary_sensor.motion_sensor_1_occupancy
+      motion_entity: binary_sensor.cellar_pir
+      no_motion_wait: 300
       light_target:
         area_id: 9fa5ef4d3cf2d9322333bca777b2edea
-      no_motion_wait: 300
 - id: '1643551976381'
   alias: Bathroom - Set brightness
   description: ''
