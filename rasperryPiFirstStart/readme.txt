@@ -64,3 +64,7 @@ https://blog.alexellis.io/getting-started-with-docker-on-raspberry-pi/
 3. install git
 sudo apt-get install git
 git clone https://github.com/richRubie/homeDocker
+
+4. restart once a week
+crontab
+05 4    * * 7   root    reboot
