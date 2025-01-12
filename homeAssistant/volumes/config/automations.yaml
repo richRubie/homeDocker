@@ -72,7 +72,7 @@
   description: ''
   trigger:
   - platform: time
-    at: '19:00'
+    at: '21:00:00'
   condition: []
   action:
   - service: light.turn_on
@@ -434,3 +434,68 @@
       seconds: 0
       milliseconds: 0
   mode: single
+- id: '1728161078691'
+  alias: Living room ikea trafri
+  description: ''
+  use_blueprint:
+    path: jwhb/zigbee2mqtt-ikea-e1524-e1810-tradfri-remote-control.yaml
+    input:
+      toggle_action:
+      - service: light.toggle
+        data: {}
+        target:
+          device_id: c98729eeefa3723588c3e0fcd7491b96
+      brightness_up_action:
+      - service: light.turn_on
+        data:
+          brightness_step_pct: 10
+        target:
+          device_id: c98729eeefa3723588c3e0fcd7491b96
+      brightness_down_action:
+      - service: light.turn_on
+        data:
+          brightness_step_pct: -10
+        target:
+          device_id: c98729eeefa3723588c3e0fcd7491b96
+      arrow_right_action:
+      - service: light.toggle
+        data: {}
+        target:
+          device_id: b0bee09618572943205abf603f59dfd4
+      arrow_left_action:
+      - service: light.toggle
+        data: {}
+        target:
+          device_id: 9eef1917122c3f9123af7d918d2ae98f
+      action_sensor: sensor.ikea_tradfri_remote_living_room_action
+- id: '1728739405277'
+  alias: Dining room remote
+  description: ''
+  use_blueprint:
+    path: lsismeiro/ikea_e2001_e2002.yaml
+    input:
+      integration: Zigbee2MQTT
+      controller_entity: sensor.ikea_styrbar_remote_dining_room_action
+      helper_last_controller_event: input_text.styrbar_remote_helper
+      action_button_left_short:
+      - service: light.toggle
+        data: {}
+        target:
+          device_id: 1d6d0f428d7d0f136067b5ebe9ff91e9
+      action_button_up_short:
+      - service: light.turn_on
+        data:
+          brightness_step_pct: 10
+        target:
+          area_id: 214bf2e9a82247d58bd7280bb8598e72
+      action_button_down_short:
+      - service: light.turn_on
+        data:
+          brightness_step_pct: -10
+        target:
+          area_id: 214bf2e9a82247d58bd7280bb8598e72
+      action_button_right_short:
+      - service: light.toggle
+        data: {}
+        target:
+          device_id: 6956b1fbcfd04a9eab655772efaa1d67
