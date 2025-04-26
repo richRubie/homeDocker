@@ -1,10 +1,10 @@
 - id: '1599811624657'
   alias: Attic - Light on in morning
   description: ''
-  trigger:
+  triggers:
   - at: '8:30'
-    platform: time
-  condition:
+    trigger: time
+  conditions:
   - condition: time
     weekday:
     - mon
@@ -12,12 +12,12 @@
     - wed
     - thu
     - fri
-  action:
-  - brightness_pct: 100
-    device_id: bc598afac29144f580920916f42065b5
-    domain: light
-    entity_id: light.shelly_shdm_2_e0980695b40b
-    type: turn_on
+  actions:
+  - action: light.turn_on
+    metadata: {}
+    data: {}
+    target:
+      area_id: d7ed0a2f0e0b4f8295548b5545641233
   mode: single
 - id: '1600867231219'
   alias: Back Bedroom - Lights off  in the morning
@@ -265,24 +265,24 @@
 - id: '1654895474996'
   alias: Bathroom  - Light on
   description: ''
-  trigger:
+  triggers:
   - type: motion
-    platform: device
     device_id: ef2bf7a7bb707319e79c8a8b502267c8
     entity_id: binary_sensor.aqara_pir_2_occupancy
     domain: binary_sensor
     id: motion_detected
-  - platform: state
-    entity_id:
+    trigger: device
+  - entity_id:
     - binary_sensor.aqara_dw_4_bathroom_door_contact
     to: 'on'
     id: door_open
-  - platform: state
-    entity_id:
+    trigger: state
+  - entity_id:
     - binary_sensor.shelly_shdm_2_3c6105e58aa9_2_switch
     - binary_sensor.shelly_shdm_2_3c6105e58aa9_1_switch
     id: switchToggle
-  condition:
+    trigger: state
+  conditions:
   - condition: or
     conditions:
     - condition: trigger
@@ -294,9 +294,9 @@
       - condition: trigger
         id: switchToggle
       - condition: state
-        entity_id: light.shelly_shdm_2_3c6105e58aa9
         state: 'on'
-  action:
+        entity_id: light.shellydimmer2_3c6105e58aa9
+  actions:
   - choose:
     - conditions:
       - condition: and
@@ -308,7 +308,7 @@
           - condition: trigger
             id: door_open
         - condition: state
-          entity_id: light.shelly_shdm_2_3c6105e58aa9
+          entity_id: light.shellydimmer2_3c6105e58aa9
           state: 'off'
         - condition: numeric_state
           entity_id: sensor.aqara_pir_2_illuminance_lux
@@ -319,35 +319,35 @@
         - condition: time
           before: 07:00:00
         then:
-        - service: light.turn_on
-          data:
+        - data:
             brightness_pct: 30
           target:
             area_id: bathroom
+          action: light.turn_on
         else:
-        - service: light.turn_on
-          data:
+        - data:
             brightness_pct: 100
           target:
             area_id: bathroom
+          action: light.turn_on
     - conditions:
       - condition: and
         conditions:
         - condition: trigger
           id: switchToggle
         - condition: state
-          entity_id: light.shelly_shdm_2_3c6105e58aa9
+          entity_id: light.shellydimmer2_3c6105e58aa9
           state: 'on'
       sequence:
-      - service: light.turn_on
-        data:
+      - data:
           brightness_pct: 100
         target:
           area_id: bathroom
-  - service: timer.start
-    data: {}
+        action: light.turn_on
+  - data: {}
     target:
       area_id: bathroom
+    action: timer.start
   - if:
     - condition: trigger
       id: motion_detected
@@ -355,10 +355,10 @@
       entity_id: binary_sensor.aqara_dw_4_bathroom_door_contact
       state: 'on'
     then:
-    - service: timer.pause
-      data: {}
+    - data: {}
       target:
         area_id: bathroom
+      action: timer.pause
   mode: single
 - id: '1662306503617'
   alias: Cellar - Washing Machine Finished
@@ -438,36 +438,41 @@
   alias: Living room ikea trafri
   description: ''
   use_blueprint:
-    path: jwhb/zigbee2mqtt-ikea-e1524-e1810-tradfri-remote-control.yaml
+    path: chrschorn/z2m2.0_ikea_tradfri_5button_remote_blueprint.yaml
     input:
-      toggle_action:
-      - service: light.toggle
+      remote_device: cbf097af915d33d8f27132f7bebbc01b
+      action_toggle:
+      - action: light.toggle
+        metadata: {}
         data: {}
         target:
-          device_id: c98729eeefa3723588c3e0fcd7491b96
-      brightness_up_action:
-      - service: light.turn_on
+          device_id: 7fc3d6bd99d01ba6f7b4d29565b9e272
+      action_brightness_up_click:
+      - action: light.turn_on
+        metadata: {}
         data:
           brightness_step_pct: 10
         target:
-          device_id: c98729eeefa3723588c3e0fcd7491b96
-      brightness_down_action:
-      - service: light.turn_on
+          device_id: 7fc3d6bd99d01ba6f7b4d29565b9e272
+      action_brightness_down_click:
+      - action: light.turn_on
+        metadata: {}
         data:
           brightness_step_pct: -10
         target:
-          device_id: c98729eeefa3723588c3e0fcd7491b96
-      arrow_right_action:
-      - service: light.toggle
+          device_id: 7fc3d6bd99d01ba6f7b4d29565b9e272
+      action_arrow_left_click:
+      - action: light.toggle
+        metadata: {}
         data: {}
         target:
-          device_id: b0bee09618572943205abf603f59dfd4
-      arrow_left_action:
-      - service: light.toggle
+          device_id: d94b071ee5072648c5e9d08b5f4673a4
+      action_arrow_right_click:
+      - action: light.toggle
+        metadata: {}
         data: {}
         target:
-          device_id: 9eef1917122c3f9123af7d918d2ae98f
-      action_sensor: sensor.ikea_tradfri_remote_living_room_action
+          device_id: a7db2d4ba467558c369b5bc2dfe1f433
 - id: '1728739405277'
   alias: Dining room remote
   description: ''
@@ -478,24 +483,24 @@
       controller_entity: sensor.ikea_styrbar_remote_dining_room_action
       helper_last_controller_event: input_text.styrbar_remote_helper
       action_button_left_short:
-      - service: light.toggle
-        data: {}
+      - data: {}
+        action: light.toggle
         target:
-          device_id: 1d6d0f428d7d0f136067b5ebe9ff91e9
+          device_id: cff9e39fe5eebc2da4ba054fcdef77e5
       action_button_up_short:
-      - service: light.turn_on
-        data:
+      - data:
           brightness_step_pct: 10
         target:
           area_id: 214bf2e9a82247d58bd7280bb8598e72
+        action: light.turn_on
       action_button_down_short:
-      - service: light.turn_on
-        data:
+      - data:
           brightness_step_pct: -10
         target:
           area_id: 214bf2e9a82247d58bd7280bb8598e72
+        action: light.turn_on
       action_button_right_short:
-      - service: light.toggle
-        data: {}
+      - data: {}
+        action: light.toggle
         target:
-          device_id: 6956b1fbcfd04a9eab655772efaa1d67
+          device_id: cff9e39fe5eebc2da4ba054fcdef77e5
