@@ -1,13 +1,5 @@
 #!/bin/bash
 
-passwd
-
-# setup auto login
-mkdir ~/.ssh
-chmod 700 ~/.ssh
-touch ~/.ssh/authorized_keys
-chmod 600 ~/.ssh/authorized_keys
-
 sudo apt update -y
 sudo apt upgrade -y
 
