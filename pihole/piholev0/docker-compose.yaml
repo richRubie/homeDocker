@@ -15,11 +15,13 @@ services:
       TZ: 'Europe/London'
       DNS1: 1.1.1.1
       DNS2: 1.0.0.1
+      FTLCONF_webserver_tls_cert: /cert/pihole.pem
+      FTLCONF_webserver_domain: rubie-todd.uk
+      FTLCONF_dns_listeningMode: 'all'
     # Volumes store your data between container upgrades
     volumes:
        - './volumes/etc-pihole/:/etc/pihole/'
        - './volumes/etc-dnsmasq.d/:/etc/dnsmasq.d/'
-       - './volumes/etc-lighttpd/external.conf:/etc/lighttpd/external.conf'
        - '../../secrets/cert:/cert'
     dns:
       - 1.0.0.1
