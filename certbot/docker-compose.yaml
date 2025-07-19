@@ -1,7 +1,6 @@
-version: '2'
 services:
   certbot:
-    image: certbot/dns-cloudflare:arm32v6-latest
+    image: certbot/dns-cloudflare
     volumes:
       - ./volumes/etc:/etc/letsencrypt
       - ./volumes/logs:/var/log/letsencrypt
