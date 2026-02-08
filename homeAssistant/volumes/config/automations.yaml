@@ -100,13 +100,12 @@
 - id: '1632834080174'
   alias: Attic - Send Notification - Raining and windows are open
   description: ''
-  trigger:
-  - platform: state
-    entity_id: sensor.pudsey_probability_of_precipitation_3_hourly
-    attribute: attribution
-    from: '50'
-    to: '100'
-  condition:
+  triggers:
+  - entity_id:
+    - weather.met_office_pudsey_3_hourly
+    trigger: state
+    to: rainy
+  conditions:
   - condition: or
     conditions:
     - type: is_open
@@ -119,24 +118,24 @@
       device_id: 17bb7d3c08dcff6a63cc1f3dbe5255d3
       entity_id: binary_sensor.aqara_dw_2_contact
       domain: binary_sensor
-  action:
-  - service: media_player.play_media
-    target:
+  actions:
+  - target:
       entity_id: media_player.ha_notifications
     data:
-      media_content_id: media-source://tts/cloud?message=It%27s+going+to+rain&language=en-GB&voice=LibbyNeural
-      media_content_type: provider
+      media_content_id: media-source://tts/google_cloud?message=It%27s+going+to+rain+and+the+attic+windows+are+open&language=en-GB&voice=en-GB-Chirp-HD-D
+      media_content_type: audio/mp3
     metadata:
-      title: It's going to rain
-      thumbnail: https://brands.home-assistant.io/_/cloud/logo.png
+      title: It's going to rain and the attic windows are open
+      thumbnail: https://brands.home-assistant.io/_/google_cloud/logo.png
       media_class: app
       children_media_class:
       navigateIds:
       - {}
       - media_content_type: app
         media_content_id: media-source://tts
-      - media_content_type: provider
-        media_content_id: media-source://tts/cloud?message=It%27s+going+to+rain&language=en-GB&voice=LibbyNeural
+      - media_content_type: audio/mp3
+        media_content_id: media-source://tts/google_cloud?message=It%27s+going+to+rain+and+the+attic+windows+are+open&language=en-GB&voice=en-GB-Chirp-HD-D
+    action: media_player.play_media
   mode: single
 - id: '1636967707722'
   alias: Landing - Lights brighter in the morning
@@ -156,29 +155,29 @@
 - id: '1640619543027'
   alias: Toilet - Light auto on off
   description: ''
-  trigger:
-  - platform: event
-    event_type: timer.finished
+  triggers:
+  - event_type: timer.finished
     event_data:
       entity_id: timer.toilet
     id: timer_finished
-  - type: motion
-    platform: device
+    trigger: event
+  - type: occupied
     device_id: fb70afcf862ef62a6c6580eae94a1da9
-    entity_id: binary_sensor.aqara_pir_3_toilet_occupancy
+    entity_id: cd8a87ab1eda8b3fc8ea1c7377ba8b16
     domain: binary_sensor
+    trigger: device
     id: motion_detected
-  - platform: state
-    entity_id:
+  - entity_id:
     - binary_sensor.aqara_dw_3_toilet_door_contact
     to: 'on'
     id: door_open
-  - platform: state
-    entity_id:
+    trigger: state
+  - entity_id:
     - binary_sensor.shelly_shdm_2_e8db84d787f2_2_switch
     - binary_sensor.shelly_shdm_2_e8db84d787f2_1_switch
     id: switchToggle
-  condition:
+    trigger: state
+  conditions:
   - condition: not
     conditions:
     - condition: and
@@ -188,36 +187,36 @@
       - condition: state
         entity_id: light.shelly_shdm_2_e8db84d787f2
         state: 'off'
-  action:
+  actions:
   - choose:
     - conditions:
       - condition: trigger
         id: timer_finished
       sequence:
-      - service: light.turn_off
-        target:
+      - target:
           area_id: toilet
         data: {}
+        action: light.turn_off
     default:
-    - service: light.turn_on
-      target:
+    - target:
         area_id: toilet
       data: {}
-    - service: timer.start
-      data:
+      action: light.turn_on
+    - data:
         duration: '0'
       target:
         area_id: toilet
+      action: timer.start
   - condition: trigger
     id: motion_detected
   - condition: state
     entity_id: binary_sensor.aqara_dw_3_toilet_door_contact
     state: 'on'
     attribute: contact
-  - service: timer.pause
-    target:
+  - target:
       area_id: toilet
     data: {}
+    action: timer.pause
   mode: single
 - id: '1641238468956'
   alias: Cellar  - Motion-activated Light

@@ -1,15 +1,18 @@
-homeassistant: true
-permit_join: false
+homeassistant:
+  enabled: true
 mqtt:
   base_topic: zigbee2mqtt
   server: mqtt://localhost
 serial:
   port: /dev/ttyUSB0
 frontend:
+  enabled: true
   port: 8081
 advanced:
-  log_level: info
-blocklist: []
+  log_level: debug
+blocklist:
+  - '0x847127fffe329086'
+  - '0x0c4314fffef7874a'
 devices:
   '0x00158d000588ea32':
     friendly_name: Aqara HT 2 - Back Bedroom
@@ -28,7 +31,7 @@ devices:
   '0x00158d0003ceb910':
     friendly_name: Aqara DW 4 - Bathroom Door
   '0x2c1165fffea1800f':
-    friendly_name: IKEA Switch 2 - Dining Room
+    friendly_name: IKEA Switch 2
   '0x00158d000588e9f4':
     friendly_name: Aqara HT 3 - Office
   '0x00158d00025d69e9':
@@ -37,10 +40,6 @@ devices:
     friendly_name: Aqara HT 6 - Attic
   '0x00158d0005bd8d7f':
     friendly_name: Aqara HT 1 - Front Bedroom
-  '0x847127fffe329086':
-    friendly_name: IKEA Switch 1 - Landing
-  '0x0c4314fffef7874a':
-    friendly_name: IKEA Switch 3 - Office
   '0x00158d000678e1b6':
     friendly_name: Aqara HT 8 - Toilet
   '0x00158d00054d4578':
@@ -59,12 +58,21 @@ devices:
     friendly_name: Aqara HT 9 - Cellar
   '0x00158d000af21b74':
     friendly_name: Aqara HT 10 - Kitchen
+  '0x8c8b48fffe7b1f5d':
+    friendly_name: IKEA Switch 4
+  '0x94a081fffe5f6ac4':
+    friendly_name: IKEA Switch 5
+  '0x94a081fffe540ebc':
+    friendly_name: IKEA Switch 6
+  '0xc4d8c8fffe2e83b1':
+    friendly_name: IKEA Remote 1
+  '0xc4d8c8fffe2e3c6e':
+    friendly_name: IKEA Remote 2
   '0x040d84fffe987564':
     friendly_name: IKEA Styrbar remote - Dining room
 groups:
   '1':
     friendly_name: Kitchen cabinet lights
-    devices:
-      - 0x385b44fffe539ef2/1
-      - 0x000b57fffeba5e11/1
-availability: false
+availability:
+  enabled: false
+version: 4
