@@ -1,11 +1,12 @@
-homeassistant: true
-permit_join: false
+homeassistant:
+  enabled: true
 mqtt:
   base_topic: zigbee2mqtt
   server: mqtt://localhost
 serial:
   port: /dev/ttyUSB0
 frontend:
+  enabled: true
   port: 8081
 advanced:
   log_level: info
@@ -64,7 +65,6 @@ devices:
 groups:
   '1':
     friendly_name: Kitchen cabinet lights
-    devices:
-      - 0x385b44fffe539ef2/1
-      - 0x000b57fffeba5e11/1
-availability: false
+availability:
+  enabled: false
+version: 4
