@@ -1,5 +1,5 @@
 sudo cp -RL ~/homeDocker/certbot/volumes/etc/live/rubie-todd.uk ~/certStaging
-sudo chown -R admin:admin ~/certStaging/
+sudo chown -R pi:pi ~/certStaging/
 mv ~/certStaging/rubie-todd.uk/* ~/certStaging/
 rmdir ~/certStaging/rubie-todd.uk
 cat ~/certStaging/privkey.pem ~/certStaging/cert.pem > ~/certStaging/combined.pem
