@@ -8,6 +8,8 @@ serial:
 frontend:
   enabled: true
   port: 8081
+availability:
+    enabled: true
 advanced:
   log_level: debug
 blocklist:
@@ -70,9 +72,11 @@ devices:
     friendly_name: IKEA Remote 2
   '0x040d84fffe987564':
     friendly_name: IKEA Styrbar remote - Dining room
+  '0xa4c1380e4fcfba5c':
+    friendly_name: '0xa4c1380e4fcfba5c'
 groups:
   '1':
     friendly_name: Kitchen cabinet lights
 availability:
   enabled: false
-version: 4
+version: 5
