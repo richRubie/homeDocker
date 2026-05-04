@@ -8,8 +8,6 @@ serial:
 frontend:
   enabled: true
   port: 8081
-availability:
-    enabled: true
 advanced:
   log_level: debug
 blocklist:
@@ -78,5 +76,5 @@ groups:
   '1':
     friendly_name: Kitchen cabinet lights
 availability:
-  enabled: false
+  enabled: true
 version: 5
