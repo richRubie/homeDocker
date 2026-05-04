@@ -1,6 +1,6 @@
 services:
   controller:
-    image: "jacobalberty/unifi:v7.4"
+    image: "jacobalberty/unifi"
     container_name: unifi
     init: true
     restart: unless-stopped
