@@ -10,6 +10,7 @@ frontend:
   port: 8081
 advanced:
   log_level: debug
+  last_seen: 'ISO_8601_local'
 blocklist:
   - '0x847127fffe329086'
   - '0x0c4314fffef7874a'
