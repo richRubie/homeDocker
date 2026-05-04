@@ -8,6 +8,8 @@ serial:
 frontend:
   enabled: true
   port: 8081
+availability:
+    enabled: true
 advanced:
   log_level: debug
 blocklist:
