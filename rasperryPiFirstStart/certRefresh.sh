@@ -1,13 +1,22 @@
-sudo cp -RL ~/homeDocker/certbot/volumes/etc/live/rubie-todd.uk ~/certStaging
-sudo chown -R pi:pi ~/certStaging/
+#!/bin/sh
+# This script runs inside the Certbot container via --deploy-hook
+set -e
 
-mv -f ~/certStaging/rubie-todd.uk/* ~/certStaging/
-rmdir ~/certStaging/rubie-todd.uk
+SRC="/etc/letsencrypt/live/rubie-todd.uk"
+DEST="/secrets/cert"
+ARCHIVE="/secrets/certArchive/$(date +"%Y-%m-%d")"
 
-cat ~/certStaging/privkey.pem ~/certStaging/cert.pem > ~/certStaging/combined.pem
+mkdir -p "$ARCHIVE"
 
-ARCHIVE_DIR=~/homeDocker/secrets/certArchive/$(date +"%Y-%m-%d")
-mkdir -p "$ARCHIVE_DIR"
+# Archive current certs
+cp -f "$DEST"/* "$ARCHIVE"/ 2>/dev/null || true
 
-mv -f ~/homeDocker/secrets/cert/* "$ARCHIVE_DIR"/ 2>/dev/null || true
-mv -f ~/certStaging/* ~/homeDocker/secrets/cert
+# Copy new certs (following symlinks)
+cp -L "$SRC/privkey.pem" "$DEST/privkey.pem"
+cp -L "$SRC/fullchain.pem" "$DEST/fullchain.pem"
+cp -L "$SRC/cert.pem" "$DEST/cert.pem"
+cp -L "$SRC/chain.pem" "$DEST/chain.pem"
+
+# Generate combined files for Pi-hole/Unifi/HA
+cat "$SRC/privkey.pem" "$SRC/cert.pem" > "$DEST/combined.pem"
+cp "$DEST/combined.pem" "$DEST/pihole.pem"
