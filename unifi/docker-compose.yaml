@@ -5,6 +5,8 @@ services:
     init: true
     restart: unless-stopped
     network_mode: host
+    labels:
+      - "com.github.richr.cert-reload=true"
     volumes:
       - ./volumes/data:/unifi/data
       - ./volumes/log:/unifi/log

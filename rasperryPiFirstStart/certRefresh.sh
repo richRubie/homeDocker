@@ -21,12 +21,14 @@ cp -L "$SRC/chain.pem" "$DEST/chain.pem"
 cat "$SRC/privkey.pem" "$SRC/cert.pem" > "$DEST/combined.pem"
 cp "$DEST/combined.pem" "$DEST/pihole.pem"
 
-# Install curl (needed to talk to docker socket)
-apk add --no-cache curl
+# Install dependencies (needed to talk to docker socket and parse JSON)
+apk add --no-cache curl jq
 
 # Restart containers to pick up new certs
-# Ensure these names match your 'container_name' in docker-compose files
-for container in unifi pihole home-assistant; do
-    echo "Restarting $container..."
-    curl --unix-socket /var/run/docker.sock -X POST "http://localhost/containers/$container/restart"
+# Queries for containers with the label 'com.github.richr.cert-reload=true'
+CONTAINER_IDS=$(curl -s --unix-socket /var/run/docker.sock "http://localhost/v1.41/containers/json?filters=%7B%22label%22%3A%5B%22com.github.richr.cert-reload%3Dtrue%22%5D%7D" | jq -r '.[].Id')
+
+for id in $CONTAINER_IDS; do
+    echo "Restarting container ID: $id"
+    curl -s --unix-socket /var/run/docker.sock -X POST "http://localhost/containers/$id/restart"
 done

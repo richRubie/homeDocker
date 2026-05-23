@@ -3,6 +3,8 @@ services:
   pihole:
     container_name: pihole
     image: pihole/pihole:latest
+    labels:
+      - "com.github.richr.cert-reload=true"
     ports:
       - "53:53/tcp"
       - "53:53/udp"
