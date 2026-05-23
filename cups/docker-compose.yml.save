@@ -1,7 +1,7 @@
-version: '3.9'
+unixornversion: '3.9'
 services:
   cupsd:
-    image: unixorn/cupsd
+    image: anujdatar/cupsd
     environment:
       - CUPSADMIN=batman
       - CUPSPASSWORD=batcave_password

@@ -70,11 +70,9 @@ devices:
     friendly_name: IKEA Remote 2
   '0x040d84fffe987564':
     friendly_name: IKEA Styrbar remote - Dining room
-  '0xa4c1380e4fcfba5c':
-    friendly_name: Soil Sensor - 1
 groups:
   '1':
     friendly_name: Kitchen cabinet lights
 availability:
-  enabled: true
-version: 5
+  enabled: false
+version: 4
