@@ -10,5 +10,4 @@ services:
       - ../rasperryPiFirstStart/certRefresh.sh:/scripts/certRefresh.sh
       - ../secrets:/secrets
       - /var/run/docker.sock:/var/run/docker.sock
-    entrypoint: ""
     command: certonly --non-interactive --dns-cloudflare --dns-cloudflare-credentials /credentials/cred.ini -d *.rubie-todd.uk --agree-tos --email rich.rubie@gmail.com --keep-until-expiring --deploy-hook /scripts/certRefresh.sh --quiet
