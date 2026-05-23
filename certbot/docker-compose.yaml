@@ -1,5 +1,6 @@
 services:
   certbot:
+    container_name: certbot
     image: certbot/dns-cloudflare
     volumes:
       - ./volumes/etc:/etc/letsencrypt
@@ -9,4 +10,4 @@ services:
       - ../rasperryPiFirstStart/certRefresh.sh:/scripts/certRefresh.sh
       - ../secrets:/secrets
     entrypoint: ""
-    command: certonly --non-interactive --dns-cloudflare --dns-cloudflare-credentials /credentials/cred.ini -d *.rubie-todd.uk --agree-tos --email rich.rubie@gmail.com --keep-until-expiring --deploy-hook /scripts/certRefresh.sh
+    command: certonly --non-interactive --dns-cloudflare --dns-cloudflare-credentials /credentials/cred.ini -d *.rubie-todd.uk --agree-tos --email rich.rubie@gmail.com --keep-until-expiring --deploy-hook /scripts/certRefresh.sh --quiet
