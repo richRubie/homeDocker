@@ -1,5 +1,5 @@
 homeassistant:
-  internal_url: https://pi2.rubie-todd.uk:2053
+  internal_url: https://pi3.rubie-todd.uk:2053
   country: GB
   currency: GBP
   time_zone: "Europe/London"
