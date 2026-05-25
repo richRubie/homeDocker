@@ -10,7 +10,6 @@ frontend:
   port: 8081
 advanced:
   log_level: debug
-  last_seen: 'ISO_8601_local'
 blocklist:
   - '0x847127fffe329086'
   - '0x0c4314fffef7874a'
@@ -72,7 +71,7 @@ devices:
   '0x040d84fffe987564':
     friendly_name: IKEA Styrbar remote - Dining room
   '0xa4c1380e4fcfba5c':
-    friendly_name: '0xa4c1380e4fcfba5c'
+    friendly_name: Soil Sensor - 1
 groups:
   '1':
     friendly_name: Kitchen cabinet lights
