@@ -12,6 +12,7 @@ services:
       - ../secrets/homeAssistant/google-assistant.json:/config/google-assistant.json
       - ../secrets/homeAssistant/googlecloud.json:/config/googlecloud.json
       - ../secrets/homeAssistant/secrets.yaml:/config/secrets.yaml
+      - /run/dbus:/run/dbus:ro
     restart: unless-stopped
     privileged: true
     network_mode: host
