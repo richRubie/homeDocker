@@ -8,6 +8,8 @@ serial:
 frontend:
   enabled: true
   port: 8081
+  # ssl_cert: /config/ssl/fullchain.pem
+  # ssl_key: /config/ssl/privkey.pem
 advanced:
   log_level: debug
 blocklist:
