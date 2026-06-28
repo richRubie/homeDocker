@@ -27,3 +27,4 @@ zigbee2mqtt/volumes/**
 !*.conf
 
 homeAssistant/volumes/config/secrets.yaml
+.env

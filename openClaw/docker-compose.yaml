@@ -1,0 +1,29 @@
+services:
+  openclaw:
+    image: coollabsio/openclaw:latest
+    container_name: openclaw
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      # Pass your Google AI Studio token here
+      - GEMINI_API_KEY=AIzaSy...YourActualKeyHere   
+      # Force OpenClaw to target Gemini Flash (highly recommended for performance)
+      - OPENCLAW_PRIMARY_MODEL=google/gemini-2.5-flash
+      # Protect your gateway web interface
+      - AUTH_PASSWORD=ChooseASecurePassword
+      - OPENCLAW_GATEWAY_TOKEN=YourSecureGatewayTokenHere
+      - NODE_COMPILE_CACHE=/data/openclaw-compile-cache
+      - OPENCLAW_NO_RESPAWN=1
+    env_file:
+      - .env
+    volumes:
+      - openclaw-data:/data
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  openclaw-data:
