@@ -6,13 +6,10 @@ services:
     ports:
       - "8080:8080"
     environment:
-      # Pass your Google AI Studio token here
-      - GEMINI_API_KEY=AIzaSy...YourActualKeyHere   
-      # Force OpenClaw to target Gemini Flash (highly recommended for performance)
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - AUTH_PASSWORD=${AUTH_PASSWORD}
+      - OPENCLAW_GATEWAY_TOKEN=${OPENCLAW_GATEWAY_TOKEN}
       - OPENCLAW_PRIMARY_MODEL=google/gemini-2.5-flash
-      # Protect your gateway web interface
-      - AUTH_PASSWORD=ChooseASecurePassword
-      - OPENCLAW_GATEWAY_TOKEN=YourSecureGatewayTokenHere
       - NODE_COMPILE_CACHE=/data/openclaw-compile-cache
       - OPENCLAW_NO_RESPAWN=1
     env_file:
