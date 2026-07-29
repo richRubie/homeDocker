@@ -4,7 +4,7 @@ sudo apt update -y
 sudo apt upgrade -y
 
 # docker
-curl -sSL https://get.docker.com | sh
+sudo apt install docker.io
 
 sudo systemctl enable docker
 
