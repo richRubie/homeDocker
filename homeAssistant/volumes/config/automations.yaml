@@ -258,7 +258,7 @@
     target:
       entity_id: media_player.ha_notifications
     data:
-      media_content_id: media-source://tts/cloud?message=Washing+machine+has+finished&language=en-GB&gender=female
+      media_content_id: media-source://tts/cloud?message=Washing+machine+has+finished&language=en-GB&voice=en-GB-Standard-F
       media_content_type: provider
     metadata:
       title: Washing machine has finished
@@ -270,7 +270,7 @@
       - media_content_type: app
         media_content_id: media-source://tts
       - media_content_type: provider
-        media_content_id: media-source://tts/cloud?message=Washing+machine+has+finished&language=en-GB&gender=female
+        media_content_id: media-source://tts/cloud?message=Washing+machine+has+finished&language=en-GB&voice=en-GB-Standard-F
   mode: single
 - id: '1728161078691'
   alias: Living room ikea trafri
