@@ -4,13 +4,6 @@ services:
     image: eclipse-mosquitto:latest
     restart: unless-stopped
     network_mode: host
-    # deploy:
-    #   resources:
-    #   limits:
-    #     memory: 125M
-    # ports:
-    #   - "1883:1883"
-    #   - "9001:9001"
     volumes:
       - ./volumes/mosquittoConfig/mosquitto.conf:/mosquitto/config/mosquitto.conf
       - ./volumes/mosquittoData:/mosquitto/data
@@ -25,10 +18,9 @@ services:
       - ../secrets/zigbee2mqtt/secrets.yaml:/app/data/secret.yaml
       - ../secrets/cert:/config/ssl
       - /run/udev:/run/udev:ro
-    # devices:
-    #   - /dev/serial/by-id/usb-ITead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_7071cec25486ec118f59e73719c2d21c-if00-port0:/dev/ttyUSB0
+    devices:
+      - ${ZIGBEE_ADAPTER:?ZIGBEE_ADAPTER must be set in .env}:/dev/ttyUSB0
     restart: unless-stopped
     network_mode: host
-    privileged: true
     environment:
       - TZ=Europe/London
