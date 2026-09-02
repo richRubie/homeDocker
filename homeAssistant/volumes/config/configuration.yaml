@@ -16,11 +16,6 @@ homeassistant:
       device_class: temperature
       state_class: measurement
 
-http:
- server_port: 2053
- ssl_certificate: ssl/fullchain.pem
- ssl_key: ssl/privkey.pem
-
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
 
