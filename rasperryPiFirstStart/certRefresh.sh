@@ -1,22 +1,22 @@
 #!/bin/sh
-# This script runs inside the Certbot container via --deploy-hook
+# This script runs inside the Certbot container via --deploy-hook.
 set -e
 
 SRC="/etc/letsencrypt/live/rubie-todd.uk"
-DEST="/secrets/cert"
-ARCHIVE="/secrets/certArchive/$(date +"%Y-%m-%d")"
-CERT_READERS_GID=$(cat /secrets/.certreaders-gid)
+DEST="/cert-output"
+ARCHIVE="/cert-archive/$(date +"%Y-%m-%d")"
+CERT_READERS_GID=$(cat /certreaders-gid)
 
 case "$CERT_READERS_GID" in
     *[!0-9]* | '')
-        echo "Invalid certreaders GID in /secrets/.certreaders-gid" >&2
+        echo "Invalid certreaders GID in /certreaders-gid" >&2
         exit 1
         ;;
 esac
 
 mkdir -p "$DEST" "$ARCHIVE"
-chown root:"$CERT_READERS_GID" "/secrets" "$DEST" "$ARCHIVE"
-chmod 750 "/secrets" "$DEST" "$ARCHIVE"
+chown root:"$CERT_READERS_GID" "$DEST" "$ARCHIVE"
+chmod 750 "$DEST" "$ARCHIVE"
 
 # Archive current certs
 cp -f "$DEST"/* "$ARCHIVE"/ 2>/dev/null || true
@@ -41,14 +41,3 @@ printf 'Certificates copied: %s UTC\n' "$(date -u '+%Y-%m-%d %H:%M:%S')" > "$DES
 chown root:"$CERT_READERS_GID" "$DEST/last-copied.txt"
 chmod 640 "$DEST/last-copied.txt"
 
-# Install dependencies (needed to talk to docker socket and parse JSON)
-apk add --no-cache curl jq
-
-# Restart containers to pick up new certs
-# Queries for containers with the label 'com.github.richr.cert-reload=true'
-CONTAINER_IDS=$(curl -s --unix-socket /var/run/docker.sock "http://localhost/v1.41/containers/json?filters=%7B%22label%22%3A%5B%22com.github.richr.cert-reload%3Dtrue%22%5D%7D" | jq -r '.[].Id')
-
-for id in $CONTAINER_IDS; do
-    echo "Restarting container ID: $id"
-    curl -s --unix-socket /var/run/docker.sock -X POST "http://localhost/containers/$id/restart"
-done

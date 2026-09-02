@@ -6,8 +6,9 @@ services:
       - ./volumes/etc:/etc/letsencrypt
       - ./volumes/logs:/var/log/letsencrypt
       - ./volumes/lib:/var/lib/letsencrypt
-      - ../secrets/certbot_credentials:/credentials
-      - ../rasperryPiFirstStart/certRefresh.sh:/scripts/certRefresh.sh
-      - ../secrets:/secrets
-      - /var/run/docker.sock:/var/run/docker.sock
+      - ../secrets/certbot_credentials:/credentials:ro
+      - ../rasperryPiFirstStart/certRefresh.sh:/scripts/certRefresh.sh:ro
+      - ../secrets/cert:/cert-output
+      - ../secrets/certArchive:/cert-archive
+      - ../secrets/.certreaders-gid:/certreaders-gid:ro
     command: certonly --non-interactive --dns-cloudflare --dns-cloudflare-credentials /credentials/cred.ini -d *.rubie-todd.uk --agree-tos --email rich.rubie@gmail.com --keep-until-expiring --deploy-hook /scripts/certRefresh.sh --quiet
