@@ -131,7 +131,7 @@
     path: homeassistant/motion_light.yaml
     input:
       motion_entity: binary_sensor.cellar_pir
-      no_motion_wait: 300
+      no_motion_wait: 1000
       light_target:
         area_id: 9fa5ef4d3cf2d9322333bca777b2edea
 - id: '1654895474996'
