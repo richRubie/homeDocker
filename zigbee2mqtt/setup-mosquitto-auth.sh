@@ -8,9 +8,6 @@ SECRETS_DIR="${MOSQUITTO_SECRETS_DIR:-$SCRIPT_DIR/../secrets/mosquitto}"
 PASSWD_FILE="$SECRETS_DIR/passwd"
 STORE_FILE="$SECRETS_DIR/credentials"
 MOSQUITTO_IMAGE="${MOSQUITTO_IMAGE:-eclipse-mosquitto:latest}"
-# uid/gid of the mosquitto user inside the broker image
-BROKER_UID=1883
-BROKER_GID=1883
 
 USERS=(zigbee2mqtt homeassistant)
 
@@ -141,15 +138,15 @@ else
   as_root cp "$work_dir/credentials" "$STORE_FILE"
 fi
 
-as_root chown "$BROKER_UID:$BROKER_GID" "$PASSWD_FILE"
 as_root chmod 600 "$PASSWD_FILE"
-as_root chown "0:0" "$STORE_FILE"
 as_root chmod 600 "$STORE_FILE"
+# Hand the tree back to the invoking user so the files stay editable and visible.
+as_root chown -R "$(id -u):$(id -g)" "$SECRETS_DIR"
 
 echo
-echo "password file:     $PASSWD_FILE (${BROKER_UID}:${BROKER_GID}, 0600)"
-echo "credential store:  $STORE_FILE (root only, 0600)"
+echo "password file:     $PASSWD_FILE (0600)"
+echo "credential store:  $STORE_FILE (0600)"
 echo
-echo "Passwords are not printed. Read them with: sudo cat \"$STORE_FILE\""
+echo "Passwords are not printed. Read them with: cat \"$STORE_FILE\""
 echo "After a password change, update ../secrets/zigbee2mqtt/secrets.yaml and the"
 echo "Home Assistant MQTT integration, then run: docker compose restart mosquitto"
