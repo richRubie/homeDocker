@@ -5,7 +5,8 @@ services:
     restart: unless-stopped
     network_mode: host
     volumes:
-      - ./volumes/mosquittoConfig/mosquitto.conf:/mosquitto/config/mosquitto.conf
+      - ./volumes/mosquittoConfig/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+      - ../secrets/mosquitto/passwd:/mosquitto/config/passwd:ro
       - ./volumes/mosquittoData:/mosquitto/data
       - ./volumes/mosquittoLog:/mosquitto/log
   zigbee2mqtt:

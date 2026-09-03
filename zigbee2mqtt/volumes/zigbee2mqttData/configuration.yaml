@@ -2,7 +2,9 @@ homeassistant:
   enabled: true
 mqtt:
   base_topic: zigbee2mqtt
-  server: mqtt://localhost
+  server: mqtt://127.0.0.1:1883
+  user: '!secret mqtt_user'
+  password: '!secret mqtt_password'
 serial:
   port: /dev/ttyUSB0
 frontend:
