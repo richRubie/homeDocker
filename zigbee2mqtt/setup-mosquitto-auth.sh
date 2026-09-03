@@ -8,6 +8,9 @@ SECRETS_DIR="${MOSQUITTO_SECRETS_DIR:-$SCRIPT_DIR/../secrets/mosquitto}"
 PASSWD_FILE="$SECRETS_DIR/passwd"
 STORE_FILE="$SECRETS_DIR/credentials"
 MOSQUITTO_IMAGE="${MOSQUITTO_IMAGE:-eclipse-mosquitto:latest}"
+DATA_DIR="$SCRIPT_DIR/volumes/mosquittoData"
+# gid the broker drops to inside the image
+BROKER_GID=1883
 
 USERS=(zigbee2mqtt homeassistant)
 
@@ -138,14 +141,21 @@ else
   as_root cp "$work_dir/credentials" "$STORE_FILE"
 fi
 
-as_root chmod 600 "$PASSWD_FILE"
 as_root chmod 600 "$STORE_FILE"
 # Hand the tree back to the invoking user so the files stay editable and visible.
 as_root chown -R "$(id -u):$(id -g)" "$SECRETS_DIR"
+# The broker drops to uid/gid 1883, so it needs group read on the password file
+# and write access to the persistence directory.
+as_root chgrp "$BROKER_GID" "$PASSWD_FILE"
+as_root chmod 640 "$PASSWD_FILE"
+mkdir -p "$DATA_DIR"
+as_root chown -R "$(id -u):$BROKER_GID" "$DATA_DIR"
+as_root chmod 770 "$DATA_DIR"
 
 echo
-echo "password file:     $PASSWD_FILE (0600)"
+echo "password file:     $PASSWD_FILE (0640, group $BROKER_GID)"
 echo "credential store:  $STORE_FILE (0600)"
+echo "persistence dir:   $DATA_DIR (0770, group $BROKER_GID)"
 echo
 echo "Passwords are not printed. Read them with: cat \"$STORE_FILE\""
 echo "After a password change, update ../secrets/zigbee2mqtt/secrets.yaml and the"
